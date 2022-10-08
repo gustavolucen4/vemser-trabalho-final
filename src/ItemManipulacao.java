@@ -1,15 +1,25 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
 public class ItemManipulacao {
 
     private List<ItemEntretenimento> entretenimentoList;
+    private List<Avaliacao> avaliacaoList;
 
     public ItemManipulacao(){
         this.entretenimentoList = new ArrayList<>();
     }
 
+
+    public List<Avaliacao> filtrarMelhoresAvaliacoes(){
+        avaliacaoList.stream()
+                .filter(filtro1 -> filtro1.getNota()>7)
+                .sorted(Comparator.comparing(Avaliacao::getNota, Comparator.reverseOrder()));
+
+        return filtrarMelhoresAvaliacoes();
+    }
     public void criarItemEntretenimento(ItemEntretenimento itemEntretenimento){
         this.entretenimentoList.add(itemEntretenimento);
     }
@@ -52,7 +62,7 @@ public class ItemManipulacao {
         }
     }
 
-    public void removerItemEntretenimentoPorIndice(Integer index) {
+    public void deletarItemEntretenimentoPorIndice(Integer index) {
         Optional<ItemEntretenimento> itemEntretenimento = entretenimentoList.stream()
                 .filter(item -> item.getId().equals(index))
                 .findFirst();
