@@ -1,17 +1,15 @@
 public abstract class Filtro implements Buscador {
     public String tipo;
     public String genero;
-    public String subgenero;
     public int classificacao;
 
     //Construtores
     public Filtro() {
     }
 
-    public Filtro(String tipo, String genero, String subgenero, int classificacao) {
+    public Filtro(String tipo, String genero, int classificacao) {
         this.tipo = tipo;
         this.genero = genero;
-        this.subgenero = subgenero;
         this.classificacao = classificacao;
     }
 
@@ -30,14 +28,6 @@ public abstract class Filtro implements Buscador {
 
     public void setGenero(String genero) {
         this.genero = genero;
-    }
-
-    public String getSubgenero() {
-        return subgenero;
-    }
-
-    public void setSubgenero(String subgenero) {
-        this.subgenero = subgenero;
     }
 
     public int getClassificacao() {
