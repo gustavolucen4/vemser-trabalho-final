@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Teste  {
     public static void main (String [] args){
-        String caminho= "c:Users\\Gaby\\Desktop\\GIT\\git-teste\\vemser-trabalho-final\\vemser-trabalho-final\\in.csv";
+        String caminho= "C:\\Users\\gusta\\Documents\\estagio\\GIT\\vem-ser-dbc\\vemser-trabalho-final\\in.csv";
         List<Filme>filmes = new ArrayList();
 
 

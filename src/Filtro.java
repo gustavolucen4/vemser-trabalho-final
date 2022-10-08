@@ -1,4 +1,4 @@
-public class Filtro {
+public abstract class Filtro implements Buscador {
     public String tipo;
     public String genero;
     public String subgenero;

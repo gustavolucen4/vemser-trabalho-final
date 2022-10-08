@@ -1,4 +1,4 @@
-public class Avaliacao {
+public class Avaliacao implements Impressao{
 
     private Usuario usuario;
     private ItemEntretenimento itemEntretenimento;
@@ -48,5 +48,10 @@ public class Avaliacao {
 
     public void setComentario(String comentario) {
         this.comentario = comentario;
+    }
+
+    @Override
+    public void imprimir() {
+        System.out.println("Usuario: "+usuario.getEmail());
     }
 }

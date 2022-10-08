@@ -15,13 +15,13 @@ public class Filme extends ItemEntretenimento {
         this.duracao = duracao;
     }
 
-    public Filme(String nome, String genero, String subgenero, String duracao) {
-        super(nome, genero, subgenero);
+    public Filme(String nome, String genero, String duracao) {
+        super(nome, genero);
         this.duracao = duracao;
     }
 
-    public Filme(String nome, String genero, String subgenero, String sinopse, Date anoLancamento, int classificacao, double critica, String plataforma, List<Avaliacao> avaliacoes, String duracao) {
-        super(nome, genero, subgenero, sinopse, anoLancamento, classificacao, critica, plataforma, avaliacoes);
+    public Filme(String nome, String genero, String sinopse, Date anoLancamento, int classificacao, double critica, String plataforma, List<Avaliacao> avaliacoes, String duracao) {
+        super(nome, genero, sinopse, anoLancamento, classificacao, critica, plataforma, avaliacoes);
         this.duracao = duracao;
     }
 

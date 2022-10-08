@@ -1,20 +1,29 @@
-public class Usuario {
+public class Usuario implements Impressao{
+
+    static Integer contadorId = 0;
+    private Integer id;
     private String nome;
-    private int idade;
+    private Integer idade;
     private String email;
-    private String idioma;
     private String senha;
+
+    private TipoUsuario tipoUsuario;
 
     //Construtores
     public Usuario(String nome, int idade, String email, String idioma, String senha) {
+        this.id = contadorId++;
         this.nome = nome;
         this.idade = idade;
         this.email = email;
-        this.idioma = idioma;
         this.senha = senha;
     }
 
     public Usuario() {
+        this.id = contadorId++;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     //GETTERS AND SETTERS
@@ -26,7 +35,7 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public int getIdade() {
+    public Integer getIdade() {
         return idade;
     }
 
@@ -42,14 +51,6 @@ public class Usuario {
         this.email = email;
     }
 
-    public String getIdioma() {
-        return idioma;
-    }
-
-    public void setIdioma(String idioma) {
-        this.idioma = idioma;
-    }
-
     public String getSenha() {
         return senha;
     }
@@ -57,4 +58,18 @@ public class Usuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
+    public void setUsuarioAdmin(Usuario cliente){
+        if(this.tipoUsuario.equals(TipoUsuario.ADIMINISTRADOR)){
+            cliente.tipoUsuario=TipoUsuario.ADIMINISTRADOR;
+        }
+    }
+
+    @Override
+    public void imprimir() {
+        System.out.println("Nome: "+getNome()
+                + "\nIdade: "+getIdade()
+                + "\nEmail: "+getEmail());
+    }
+
 }

@@ -1,17 +1,15 @@
 import java.util.Date;
 import java.util.List;
 
-public class ItemEntretenimento {
+public class ItemEntretenimento implements Impressao {
 
-    static int contadorId=0;
+    static Integer contadorId=0;
     protected Integer id;
     private String nome;
     private String genero;
-    private String subgenero;
     private String sinopse;
     private Date anoLancamento;
-    private int classificacao;
-    private double critica;
+    private Integer classificacao;
     private String plataforma;
     private List <Avaliacao> avaliacoes;
 
@@ -21,22 +19,19 @@ public class ItemEntretenimento {
         id=contadorId++;
     }
 
-    public ItemEntretenimento(String nome, String genero, String subgenero) {
+    public ItemEntretenimento(String nome, String genero) {
         this.id=contadorId++;
         this.nome = nome;
         this.genero = genero;
-        this.subgenero = subgenero;
     }
 
-    public ItemEntretenimento(String nome, String genero, String subgenero, String sinopse, Date anoLancamento, int classificacao, double critica, String plataforma, List<Avaliacao> avaliacoes) {
+    public ItemEntretenimento(String nome, String genero, String sinopse, Date anoLancamento, Integer classificacao, double critica, String plataforma, List<Avaliacao> avaliacoes) {
         this.id=contadorId++;
         this.nome = nome;
         this.genero = genero;
-        this.subgenero = subgenero;
         this.sinopse = sinopse;
         this.anoLancamento = anoLancamento;
         this.classificacao = classificacao;
-        this.critica = critica;
         this.plataforma = plataforma;
         this.avaliacoes = avaliacoes;
     }
@@ -45,10 +40,6 @@ public class ItemEntretenimento {
 
     public Integer getId() {
         return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getNome() {
@@ -67,14 +58,6 @@ public class ItemEntretenimento {
         this.genero = genero;
     }
 
-    public String getSubgenero() {
-        return subgenero;
-    }
-
-    public void setSubgenero(String subgenero) {
-        this.subgenero = subgenero;
-    }
-
     public String getSinopse() {
         return sinopse;
     }
@@ -91,20 +74,12 @@ public class ItemEntretenimento {
         this.anoLancamento = anoLancamento;
     }
 
-    public int getClassificacao() {
+    public Integer getClassificacao() {
         return classificacao;
     }
 
-    public void setClassificacao(int classificacao) {
+    public void setClassificacao(Integer classificacao) {
         this.classificacao = classificacao;
-    }
-
-    public double getCritica() {
-        return critica;
-    }
-
-    public void setCritica(double critica) {
-        this.critica = critica;
     }
 
     public String getPlataforma() {
@@ -115,11 +90,26 @@ public class ItemEntretenimento {
         this.plataforma = plataforma;
     }
 
+    public void setAvaliacoes(List<Avaliacao> avaliacoes) {
+        this.avaliacoes = avaliacoes;
+    }
+    public void adicionarAvaliacao(Avaliacao avaliacao){
+        this.avaliacoes.add(avaliacao);
+    }
+
     public List<Avaliacao> getAvaliacoes() {
         return avaliacoes;
     }
 
-    public void setAvaliacoes(Avaliacao avaliacao) {
-        this.avaliacoes.add(avaliacao);
+    @Override
+    public void imprimir() {
+        System.out.println("Nome: "+getNome()
+        + "\nGênero: "+getGenero()
+        + "\nLançamento: " + getAnoLancamento()
+        + "\nClassificação Indicativa: " + getClassificacao()
+        + "\nSinopse: "+getSinopse()
+        + "\nOnde Assistir? "+getPlataforma()
+        + "\nAvaliação dos Usuários: "+ getAvaliacoes());
+
     }
 }
