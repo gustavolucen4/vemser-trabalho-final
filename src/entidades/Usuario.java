@@ -1,4 +1,9 @@
-public class Usuario implements Impressao{
+package entidades;
+
+import interfacesenum.Impressao;
+import interfacesenum.TipoUsuario;
+
+public abstract class Usuario implements Impressao {
 
     static Integer contadorId = 0;
     private Integer id;
@@ -10,7 +15,7 @@ public class Usuario implements Impressao{
     private TipoUsuario tipoUsuario;
 
     //Construtores
-    public Usuario(String nome, int idade, String email, String idioma, String senha) {
+    public Usuario(String nome, int idade, String email, String senha) {
         this.id = contadorId++;
         this.nome = nome;
         this.idade = idade;
@@ -59,9 +64,13 @@ public class Usuario implements Impressao{
         this.senha = senha;
     }
 
+    public TipoUsuario getTipoUsuario(){
+        return this.tipoUsuario;
+    }
+
     public void setUsuarioAdmin(Usuario cliente){
         if(this.tipoUsuario.equals(TipoUsuario.ADIMINISTRADOR)){
-            cliente.tipoUsuario=TipoUsuario.ADIMINISTRADOR;
+            cliente.tipoUsuario= TipoUsuario.ADIMINISTRADOR;
         }
     }
 

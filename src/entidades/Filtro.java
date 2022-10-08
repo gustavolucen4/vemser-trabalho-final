@@ -1,4 +1,8 @@
-public abstract class Filtro implements Buscador {
+package entidades;
+
+import java.util.List;
+
+public class Filtro  {
     public String tipo;
     public String genero;
     public int classificacao;
@@ -37,4 +41,5 @@ public abstract class Filtro implements Buscador {
     public void setClassificacao(int classificacao) {
         this.classificacao = classificacao;
     }
+
 }

@@ -1,3 +1,5 @@
+import entidades.Filme;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -8,7 +10,7 @@ import java.util.List;
 
 public class Teste  {
     public static void main (String [] args){
-        String caminho= "C:\\Users\\gusta\\Documents\\estagio\\GIT\\vem-ser-dbc\\vemser-trabalho-final\\in.csv";
+        String caminho= "C:\\Users\\Gaby\\Desktop\\GIT\\git-teste\\vemser-trabalho-final\\in.csv";
         List<Filme>filmes = new ArrayList();
 
 
@@ -17,7 +19,7 @@ public class Teste  {
 
             while (linha!=null){
                 String linhaArquivo[] = linha.split(",");
-                filmes.add(new Filme(linhaArquivo[0],linhaArquivo[1],linhaArquivo[2],linhaArquivo[3]));
+                filmes.add(new Filme(linhaArquivo[0],linhaArquivo[1],linhaArquivo[2]));
                 linha = br.readLine();
             }
 

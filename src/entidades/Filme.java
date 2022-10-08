@@ -1,4 +1,5 @@
-import java.util.Date;
+package entidades;
+
 import java.util.List;
 
 public class Filme extends ItemEntretenimento {
@@ -20,10 +21,11 @@ public class Filme extends ItemEntretenimento {
         this.duracao = duracao;
     }
 
-    public Filme(String nome, String genero, String sinopse, Date anoLancamento, int classificacao, double critica, String plataforma, List<Avaliacao> avaliacoes, String duracao) {
+    public Filme(String nome, String genero, String sinopse, String anoLancamento, int classificacao, double critica, String plataforma, List<Avaliacao> avaliacoes, String duracao) {
         super(nome, genero, sinopse, anoLancamento, classificacao, critica, plataforma, avaliacoes);
         this.duracao = duracao;
     }
+
 
     public boolean indicar(){
         return true;

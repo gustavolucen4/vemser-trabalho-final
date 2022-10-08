@@ -1,4 +1,8 @@
-public class Avaliacao implements Impressao{
+package entidades;
+
+import interfacesenum.Impressao;
+
+public class Avaliacao implements Impressao {
 
     private Usuario usuario;
     private ItemEntretenimento itemEntretenimento;
@@ -52,6 +56,6 @@ public class Avaliacao implements Impressao{
 
     @Override
     public void imprimir() {
-        System.out.println("Usuario: "+usuario.getEmail());
+        System.out.println("entidades.Usuario: "+usuario.getEmail());
     }
 }

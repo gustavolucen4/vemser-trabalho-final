@@ -1,23 +1,22 @@
+package entidades;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Cliente extends Usuario {
-    private List <ItemEntretenimento> assistidos;
+    private List<ItemEntretenimento> assistidos;
     private List<Avaliacao> avaliacoes;
 
 
     //Construtores
     public Cliente() {
+        super();
     }
 
-    public Cliente(String nome, int idade, String email, String idioma, String senha, List<ItemEntretenimento> assistidos, List<Avaliacao> avaliacoes) {
-        super(nome, idade, email, idioma, senha);
-        this.assistidos = assistidos;
-        this.avaliacoes = avaliacoes;
-    }
-
-    public Cliente(List<ItemEntretenimento> assistidos, List<Avaliacao> avaliacoes) {
-        this.assistidos = assistidos;
-        this.avaliacoes = avaliacoes;
+    public Cliente(String nome, int idade, String email, String senha) {
+        super(nome, idade, email, senha);
+        this.assistidos = new ArrayList<>();
+        this.avaliacoes = new ArrayList<>();
     }
 
 

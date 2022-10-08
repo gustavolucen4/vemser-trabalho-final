@@ -1,3 +1,5 @@
+package interfacesenum;
+
 public enum TipoUsuario {
     CLIENTE("cliente"),
     ADIMINISTRADOR("adiministrador");
