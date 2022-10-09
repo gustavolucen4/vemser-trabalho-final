@@ -17,7 +17,7 @@ public class PreencherLista {
     public static void preencherFilmes(ItemManipulacao itemManipulacao){
 
         //Coloque o caminho do seu filmes.csv
-        String caminho= "C:\\Users\\gusta\\Documents\\estagio\\GIT\\vem-ser-dbc\\vemser-trabalho-final\\filmes.csv";
+        String caminho= "C:\\Users\\Pichau\\Documents\\UNIPE-SPI\\SISTEMAS_PATA_INTERNET_P1\\Estágio\\GIT DBC\\asociedadedocodigo\\vemser-trabalho-final\\filmes.csv";
 
         try (BufferedReader br = new BufferedReader(new FileReader(new File(caminho)))) {
             String linha = br.readLine();
@@ -38,7 +38,7 @@ public class PreencherLista {
     public static void preencherSeries(ItemManipulacao itemManipulacao){
 
         //Coloque o caminho do seu series.csv
-        String caminho= "C:\\Users\\gusta\\Documents\\estagio\\GIT\\vem-ser-dbc\\vemser-trabalho-final\\series.csv";
+        String caminho= "C:\\Users\\Pichau\\Documents\\UNIPE-SPI\\SISTEMAS_PATA_INTERNET_P1\\Estágio\\GIT DBC\\asociedadedocodigo\\vemser-trabalho-final\\series.csv";
 
         try (BufferedReader br = new BufferedReader(new FileReader(new File(caminho)))) {
             String linha = br.readLine();
@@ -59,7 +59,7 @@ public class PreencherLista {
     public static void preencherAdmins(UsuarioManipulacao usuarioManipulacao){
 
         //Coloque o caminho do seu admin.csv
-        String caminho= "C:\\Users\\gusta\\Documents\\estagio\\GIT\\vem-ser-dbc\\vemser-trabalho-final\\admin.csv";
+        String caminho= "C:\\Users\\Pichau\\Documents\\UNIPE-SPI\\SISTEMAS_PATA_INTERNET_P1\\Estágio\\GIT DBC\\asociedadedocodigo\\vemser-trabalho-final\\admin.csv";
 
         try (BufferedReader br = new BufferedReader(new FileReader(new File(caminho)))) {
             String linha = br.readLine();
@@ -80,7 +80,7 @@ public class PreencherLista {
     public static void preencherClientes(UsuarioManipulacao usuarioManipulacao){
 
         //Coloque o caminho do seu cliente.csv
-        String caminho= "C:\\Users\\gusta\\Documents\\estagio\\GIT\\vem-ser-dbc\\vemser-trabalho-final\\cliente.csv";
+        String caminho= "C:\\Users\\Pichau\\Documents\\UNIPE-SPI\\SISTEMAS_PATA_INTERNET_P1\\Estágio\\GIT DBC\\asociedadedocodigo\\vemser-trabalho-final\\cliente.csv";
 
         try (BufferedReader br = new BufferedReader(new FileReader(new File(caminho)))) {
             String linha = br.readLine();

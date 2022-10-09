@@ -38,27 +38,6 @@ public class AssistidosManipulacaoTest {
         assertTrue(assistidos);
     }
 
-
-    @Test
-    public void deveTestarDeletarAssistidosPorIndice() {
-
-        ItemEntretenimento itemEntretenimento = new Filme("nome1", "genero1", "60");
-        ItemManipulacao itemManipulacao = new ItemManipulacao();
-
-//        List<AssistidosManipulacao> assistidosList = new ArrayList<>();
-
-        AssistidosManipulacao assistidosManipulacao = new AssistidosManipulacao(itemManipulacao);
-        itemManipulacao.criarItemEntretenimento(itemEntretenimento);
-
-
-        // metodos
-
-        boolean verificar = assistidosManipulacao.deletarAssistido(0);
-
-        //asserts
-        assertFalse(verificar);
-    }
-
     @Test
     public void deveTestarListarAssistidos() {
         AssistidosManipulacao assistidosManipulacao;
