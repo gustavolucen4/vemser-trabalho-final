@@ -1,6 +1,7 @@
 package manipulacao;
 
 import entidades.Usuario;
+import interfacesenum.TipoUsuario;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,4 +71,5 @@ public class UsuarioManipulacao {
             return false;
         }
     }
+
 }

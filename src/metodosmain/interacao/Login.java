@@ -1,4 +1,4 @@
-package metodosmain;
+package metodosmain.interacao;
 
 import entidades.Cliente;
 import entidades.Usuario;
@@ -9,10 +9,10 @@ import java.util.Scanner;
 
 public class Login {
 
-    public static Usuario login(UsuarioManipulacao usuarioManipulacao){
-        Scanner scanner = new Scanner(System.in);
+    public static Usuario login(UsuarioManipulacao usuarioManipulacao, Scanner scanner){
 
         Usuario usuarioEntrada = new Cliente();
+        Usuario resultadoUser = null;
 
         try{
             while (true) {
@@ -36,11 +36,12 @@ public class Login {
 
                     if (!retornoUser.isEmpty()) {
                         System.out.println("\n"+usuarioEntrada.getEmail() + " Logado com sucesso!");
+                        resultadoUser = retornoUser.get();
+                        break;
                     }else {
                         System.out.println("\nUsuário não encontrado. Favor realizar Cadastro.");
                     }
 
-                    break;
                 }
                 if (opcaoEntrada == 2) {
                     System.out.println("Preencha os seguintes dados para realizar o cadastro: ");
@@ -63,18 +64,17 @@ public class Login {
                     usuarioEntrada.setSenha(senha);
 
                     usuarioManipulacao.criarUsuario(usuarioEntrada);
-
+                    resultadoUser = usuarioEntrada;
                     break;
+
                 } else {
-                    System.out.println("Opção informada não válida. Por favor, digite '1' para metodosmain.Login e '2' para Cadastro");
+                    System.out.println("Opção informada não válida. Por favor, digite '1' para metodosmain.interacao.Login e '2' para Cadastro");
                 }
             }
         }catch (Exception ex){
             System.out.println(ex.getMessage());
         }
 
-
-        scanner.close();
-        return usuarioEntrada;
+        return resultadoUser;
     }
 }

@@ -4,8 +4,8 @@ import java.util.List;
 
 public class Filtro  {
     public String tipo;
-    public String genero;
-    public int classificacao;
+    private String genero;
+    private int classificacao;
 
     //Construtores
     public Filtro() {

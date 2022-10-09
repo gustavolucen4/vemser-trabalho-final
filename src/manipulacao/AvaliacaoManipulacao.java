@@ -7,28 +7,28 @@ import java.util.List;
 
 public class AvaliacaoManipulacao {
 
-    private List<Avaliacao> avaliacoesLista;
+    private List<Avaliacao> avaliacoesList;
 
     //Construtor:
     public AvaliacaoManipulacao(){
-        avaliacoesLista = new ArrayList<>();
+        avaliacoesList = new ArrayList<>();
     }
 
     //GETTER AND SETTER
     public List<Avaliacao> getAvaliacoes (){
-        return avaliacoesLista;
+        return avaliacoesList;
     }
 
 
     //Métodos:
-    public boolean adicionarAvaliacao(Avaliacao avaliacao){
-        avaliacoesLista.add(avaliacao);
+    public boolean criarAvaliacao(Avaliacao avaliacao){
+        avaliacoesList.add(avaliacao);
         return true;
     }
 
     public  boolean listarAvaliacoes(){
-        if (avaliacoesLista != null){
-            avaliacoesLista.forEach(avaliacao -> avaliacao.imprimir() );
+        if (avaliacoesList != null){
+            avaliacoesList.forEach(avaliacao -> avaliacao.imprimir() );
             return true;
         }else {
             System.out.println("Lista vazia!");
@@ -38,8 +38,8 @@ public class AvaliacaoManipulacao {
 
     public boolean editarAvaliacoes(Integer index, Avaliacao avaliacao){
 
-        if(avaliacoesLista.get(index) != null){
-            Avaliacao novaAvaliacoes = avaliacoesLista.get(index);
+        if(avaliacoesList.get(index) != null){
+            Avaliacao novaAvaliacoes = avaliacoesList.get(index);
 
             if (avaliacao.getUsuario() != null){
                 novaAvaliacoes.setUsuario(avaliacao.getUsuario());
@@ -67,8 +67,8 @@ public class AvaliacaoManipulacao {
 
     public boolean deletarAvaliacoes(Integer index){
 
-        if (avaliacoesLista.get(index) != null){
-            avaliacoesLista.remove(index);
+        if (avaliacoesList.get(index) != null){
+            avaliacoesList.remove(avaliacoesList.get(index));
             return true;
         }else {
             System.out.println("Id não encontrado");

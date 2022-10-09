@@ -4,6 +4,9 @@ import interfacesenum.Impressao;
 
 public class Avaliacao implements Impressao {
 
+    private static Integer contadorId = 0;
+
+    private Integer id;
     private Usuario usuario;
     private ItemEntretenimento itemEntretenimento;
     private Double nota;
@@ -12,6 +15,7 @@ public class Avaliacao implements Impressao {
 
     //Construtores
     public Avaliacao() {
+        id = contadorId++;
     }
 
     public Avaliacao(Usuario usuario, ItemEntretenimento itemEntretenimento, Double nota, String comentario) {
@@ -19,6 +23,7 @@ public class Avaliacao implements Impressao {
         this.itemEntretenimento = itemEntretenimento;
         this.nota = nota;
         this.comentario = comentario;
+        id = contadorId++;
     }
 
     //GETTERS AND SETTERS
@@ -56,6 +61,15 @@ public class Avaliacao implements Impressao {
 
     @Override
     public void imprimir() {
-        System.out.println("entidades.Usuario: "+usuario.getEmail());
+        System.out.println("-------------------------\n" +
+                "Avaliacao{" +
+                "usuario=" + usuario.getEmail() +
+                ", id avaliação=" + id +
+                ", itemEntretenimento=" + itemEntretenimento.getNome() +
+                ", nota=" + nota +
+                ", comentario='" + comentario + '\'' +
+                '}' +
+                "\n-------------------------");
     }
+
 }

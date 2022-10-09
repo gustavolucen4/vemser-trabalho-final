@@ -9,7 +9,7 @@ public class ItemEntretenimento implements Impressao {
 
     static Integer contadorId=0;
     protected Integer id;
-    private String tipo;
+    protected String tipo;
     private String nome;
     private String genero;
     private String sinopse;

@@ -12,13 +12,15 @@ public class ItemManipulacao {
 
     private List<ItemEntretenimento> entretenimentoList;
 
-    public ItemManipulacao(){
-        this.entretenimentoList = new ArrayList<>();
-    }
-
     public List<ItemEntretenimento> getEntretenimentoList() {
         return entretenimentoList;
     }
+
+    public ItemManipulacao(){
+        entretenimentoList = new ArrayList<>();
+    }
+
+
 
     public Double listarMediaAvaliacao(Integer index){
         ItemEntretenimento item = entretenimentoList.get(index);
@@ -32,9 +34,9 @@ public class ItemManipulacao {
     public List<ItemEntretenimento> filtrarItemEntretenimento(Filtro filtro){
         if (filtro != null) {
             List<ItemEntretenimento> resultado = entretenimentoList.stream()
-                    .filter(buscarTipo -> buscarTipo.getTipo().equals(filtro.getTipo().toLowerCase()))
-                    .filter(buscarGenero -> buscarGenero.getGenero().equals(filtro.getGenero().toLowerCase()))
-                    .filter(buscarClassificacao -> buscarClassificacao.getClassificacao()>=(filtro.getClassificacao()))
+                    .filter(buscarTipo -> buscarTipo.getTipo().equalsIgnoreCase(filtro.getTipo()))
+                    .filter(buscarGenero -> buscarGenero.getGenero().equalsIgnoreCase(filtro.getGenero()))
+                    .filter(buscarClassificacao -> buscarClassificacao.getClassificacao()<=(filtro.getClassificacao()))
                     .toList();
             return resultado;
         }else {
@@ -59,51 +61,51 @@ public class ItemManipulacao {
     }
 
 
-    public boolean editarItemEntretenimento(Integer id, ItemEntretenimento itemProcurado){
-        ItemEntretenimento itemEncontrado = entretenimentoList.get(id);
+    public boolean editarItemEntretenimento(Integer index, ItemEntretenimento itemProcurado){
+        //ItemEntretenimento itemEncontrado = entretenimentoList.get(id);
+        if (entretenimentoList.get(index) != null){
+            ItemEntretenimento itemEncontrado = entretenimentoList.get(index);
 
-        if (itemProcurado.getNome() != null){
-            itemEncontrado.setNome(itemProcurado.getNome());
+            if (itemProcurado.getNome() != null){
+                itemEncontrado.setNome(itemProcurado.getNome());
+            }
+
+            if (itemProcurado.getGenero() != null) {
+                itemEncontrado.setGenero(itemProcurado.getGenero());
+            }
+
+            if (itemProcurado.getSinopse() != null) {
+                itemEncontrado.setSinopse(itemProcurado.getSinopse());
+            }
+
+            if (itemProcurado.getAnoLancamento() != null) {
+                itemEncontrado.setAnoLancamento(itemProcurado.getAnoLancamento());
+            }
+
+            if (itemProcurado.getClassificacao() != null) {
+                itemEncontrado.setClassificacao(itemProcurado.getClassificacao());
+            }
+
+            if (itemProcurado.getPlataforma() != null) {
+                itemEncontrado.setPlataforma(itemProcurado.getPlataforma());
+            }
+
+            if (itemProcurado.getPlataforma() != null) {
+                itemEncontrado.setPlataforma(itemProcurado.getPlataforma());
+
+            }
             return true;
         }
-
-        if (itemProcurado.getGenero() != null) {
-            itemEncontrado.setGenero(itemProcurado.getGenero());
-            return true;
-        }
-
-        if (itemProcurado.getSinopse() != null) {
-            itemEncontrado.setSinopse(itemProcurado.getSinopse());
-            return true;
-        }
-
-        if (itemProcurado.getAnoLancamento() != null) {
-            itemEncontrado.setAnoLancamento(itemProcurado.getAnoLancamento());
-            return true;
-        }
-
-        if (itemProcurado.getClassificacao() != null) {
-            itemEncontrado.setClassificacao(itemProcurado.getClassificacao());
-            return true;
-        }
-
-        if (itemProcurado.getPlataforma() != null) {
-            itemEncontrado.setPlataforma(itemProcurado.getPlataforma());
-            return true;
-        }
-
-        if (itemProcurado.getPlataforma() != null) {
-            itemEncontrado.setPlataforma(itemProcurado.getPlataforma());
-            return true;
-        }
+        System.out.println("Index não encontrado!");
         return false;
     }
+
 
     public boolean deletarItemEntretenimentoPorIndice(Integer index) {
 
         if(entretenimentoList.get(index) != null){
+            entretenimentoList.remove(entretenimentoList.get(index));
             System.out.println("Item removido!");
-            entretenimentoList.remove(index);
             return true;
         }else{
             System.out.println("Id não encontrado.");

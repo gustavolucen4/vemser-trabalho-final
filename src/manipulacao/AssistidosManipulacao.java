@@ -5,30 +5,28 @@ import entidades.ItemEntretenimento;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class AssistidosManipulacao implements Interacao {
 
     private ItemManipulacao itemManipulacao;
-    private List<ItemEntretenimento> assistidos;
-    private List<ItemEntretenimento> indicacao;
+    private List<ItemEntretenimento> assistidosList;
+    private List<ItemEntretenimento> indicacaoList;
 
     //Construtor:
-
     public AssistidosManipulacao(ItemManipulacao itemManipulacao){
-        this.assistidos = new ArrayList<>();
-        this.indicacao = new ArrayList<>();
+        assistidosList = new ArrayList<>();
+        indicacaoList = new ArrayList<>();
         this.itemManipulacao = itemManipulacao;
     }
 
     //GETTERS AND SETTER:
     public List<ItemEntretenimento> getAssistidos (){
-        this.assistidos = assistidos;
-        return assistidos;
+        this.assistidosList = assistidosList;
+        return assistidosList;
     }
     public List<ItemEntretenimento> getIndicacao (){
-        this.indicacao = indicacao;
-        return indicacao;
+        this.indicacaoList = indicacaoList;
+        return indicacaoList;
     }
 
 
@@ -37,23 +35,25 @@ public class AssistidosManipulacao implements Interacao {
     @Override
     public boolean marcarAssistido(Integer index) {
         ItemEntretenimento item = itemManipulacao.getEntretenimentoList().get(index);
-        assistidos.add(item);
+        assistidosList.add(item);
         return true;
     }
 
     public boolean deletarAssistido(Integer index) {
-        if (assistidos.get(index) != null){
-            ItemEntretenimento itemEntretenimento = assistidos.get(index);
-            assistidos.remove(itemEntretenimento);
+        ItemEntretenimento item = itemManipulacao.getEntretenimentoList().get(index);
+
+        if (item != null) {
+            assistidosList.remove(item);
+            System.out.println("Item removido!");
             return true;
         }
-        System.out.println("Index não encontrado");
-        return false;
+        System.out.println("Id não encontrado!");
+        return  false;
     }
 
     public boolean listarAssistidos(){
-        if (assistidos != null){
-            assistidos.forEach(item -> item.imprimir());
+        if (assistidosList != null){
+            assistidosList.forEach(item -> item.imprimir());
             return true;
         }else{
             System.out.println("Lista vazia!");
@@ -63,7 +63,7 @@ public class AssistidosManipulacao implements Interacao {
 
     @Override
     public boolean incluirIndicacao(ItemEntretenimento item) {
-        indicacao.add(item);
+        indicacaoList.add(item);
         return true;
     }
 

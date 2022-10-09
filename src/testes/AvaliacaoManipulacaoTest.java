@@ -32,7 +32,7 @@ public class AvaliacaoManipulacaoTest {
         avaliacao.setNota(7.5);
         avaliacao.setComentario("Muito bom!");
 
-        boolean adicionarAvaliacao = avaliacaoManipulacao.adicionarAvaliacao(avaliacao);
+        boolean adicionarAvaliacao = avaliacaoManipulacao.criarAvaliacao(avaliacao);
 
         assertTrue (adicionarAvaliacao);
     }
@@ -48,7 +48,7 @@ public class AvaliacaoManipulacaoTest {
     @Test
     public void deveTestarEditarAvaliacao(){
 
-        avaliacaoManipulacao.adicionarAvaliacao(new Avaliacao());
+        avaliacaoManipulacao.criarAvaliacao(new Avaliacao());
 
         usuario.setNome("Gaby");
         avaliacao.setUsuario(usuario);
@@ -65,7 +65,7 @@ public class AvaliacaoManipulacaoTest {
     @Test
     public void deveTestarDeletarAvaliacao(){
 
-        avaliacaoManipulacao.adicionarAvaliacao(new Avaliacao());
+        avaliacaoManipulacao.criarAvaliacao(new Avaliacao());
 
         boolean deletarAvaliacoes = false;
         deletarAvaliacoes = avaliacaoManipulacao.deletarAvaliacoes(0);

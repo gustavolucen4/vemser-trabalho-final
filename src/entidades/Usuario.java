@@ -12,7 +12,7 @@ public abstract class Usuario implements Impressao {
     private String email;
     private String senha;
 
-    private TipoUsuario tipoUsuario;
+    protected TipoUsuario tipoUsuario;
 
     //Construtores
     public Usuario(String nome, int idade, String email, String senha) {
@@ -26,6 +26,7 @@ public abstract class Usuario implements Impressao {
 
     public Usuario() {
         this.id = contadorId++;
+        tipoUsuario = TipoUsuario.CLIENTE;
     }
 
     public Integer getId() {
@@ -81,6 +82,7 @@ public abstract class Usuario implements Impressao {
                 + "\nNome: "+getNome()
                 + "\nIdade: "+getIdade()
                 + "\nEmail: "+getEmail()
+                + "\nTipo de usuário: "+this.tipoUsuario.getDescricao()
                 + "\n--------------");
     }
 
