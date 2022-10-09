@@ -21,6 +21,7 @@ public abstract class Usuario implements Impressao {
         this.idade = idade;
         this.email = email;
         this.senha = senha;
+        tipoUsuario = TipoUsuario.CLIENTE;
     }
 
     public Usuario() {
@@ -76,9 +77,11 @@ public abstract class Usuario implements Impressao {
 
     @Override
     public void imprimir() {
-        System.out.println("Nome: "+getNome()
+        System.out.println("--------------"
+                + "\nNome: "+getNome()
                 + "\nIdade: "+getIdade()
-                + "\nEmail: "+getEmail());
+                + "\nEmail: "+getEmail()
+                + "\n--------------");
     }
 
 }

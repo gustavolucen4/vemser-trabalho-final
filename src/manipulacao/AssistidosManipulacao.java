@@ -8,13 +8,17 @@ import java.util.List;
 import java.util.Optional;
 
 public class AssistidosManipulacao implements Interacao {
+
+    private ItemManipulacao itemManipulacao;
     private List<ItemEntretenimento> assistidos;
     private List<ItemEntretenimento> indicacao;
 
     //Construtor:
-    public AssistidosManipulacao(){
+
+    public AssistidosManipulacao(ItemManipulacao itemManipulacao){
         this.assistidos = new ArrayList<>();
         this.indicacao = new ArrayList<>();
+        this.itemManipulacao = itemManipulacao;
     }
 
     //GETTERS AND SETTER:
@@ -27,24 +31,24 @@ public class AssistidosManipulacao implements Interacao {
         return indicacao;
     }
 
+
     //Métodos:
+
     @Override
-    public boolean marcarAssistido(ItemEntretenimento item) {
+    public boolean marcarAssistido(Integer index) {
+        ItemEntretenimento item = itemManipulacao.getEntretenimentoList().get(index);
         assistidos.add(item);
         return true;
     }
 
     public boolean deletarAssistido(Integer index) {
-        Optional<ItemEntretenimento> itemEntretenimento = assistidos.stream()
-                .filter(item -> item.getId().equals(index))
-                .findFirst();
-
-        if(itemEntretenimento.isPresent()){
+        if (assistidos.get(index) != null){
+            ItemEntretenimento itemEntretenimento = assistidos.get(index);
             assistidos.remove(itemEntretenimento);
             return true;
-        }else {
-            return false;
         }
+        System.out.println("Index não encontrado");
+        return false;
     }
 
     public boolean listarAssistidos(){

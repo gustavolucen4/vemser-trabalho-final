@@ -119,13 +119,15 @@ public class ItemEntretenimento implements Impressao {
 
     @Override
     public void imprimir() {
-        System.out.println("Nome: "+getNome()
+        System.out.println("--------------------------------------"
+        + "\nId: "+getId()
+        + "\nNome: "+getNome()
         + "\nGênero: "+getGenero()
         + "\nLançamento: " + getAnoLancamento()
         + "\nClassificação Indicativa: " + getClassificacao()
         + "\nSinopse: "+getSinopse()
         + "\nOnde Assistir? "+getPlataforma()
-        + "\nAvaliação dos Usuários: "+ getAvaliacoes());
-
+        + "\nAvaliação dos Usuários: "+ getAvaliacoes()
+        + "\n--------------------------------------");
     }
 }

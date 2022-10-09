@@ -16,6 +16,10 @@ public class ItemManipulacao {
         this.entretenimentoList = new ArrayList<>();
     }
 
+    public List<ItemEntretenimento> getEntretenimentoList() {
+        return entretenimentoList;
+    }
+
     public Double listarMediaAvaliacao(Integer index){
         ItemEntretenimento item = entretenimentoList.get(index);
 
