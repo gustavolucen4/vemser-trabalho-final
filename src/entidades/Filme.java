@@ -5,7 +5,6 @@ import java.util.List;
 public class Filme extends ItemEntretenimento {
     private String duracao;
 
-
     //Construtores
     public Filme() {
         this.id=ItemEntretenimento.contadorId++;
@@ -21,8 +20,8 @@ public class Filme extends ItemEntretenimento {
         this.duracao = duracao;
     }
 
-    public Filme(String nome, String genero, String sinopse, String anoLancamento, int classificacao, double critica, String plataforma, List<Avaliacao> avaliacoes, String duracao) {
-        super(nome, genero, sinopse, anoLancamento, classificacao, critica, plataforma, avaliacoes);
+    public Filme(String nome, String genero, String sinopse, String anoLancamento, int classificacao, String plataforma, String duracao) {
+        super(nome, genero, sinopse, anoLancamento, classificacao, plataforma);
         this.duracao = duracao;
     }
 

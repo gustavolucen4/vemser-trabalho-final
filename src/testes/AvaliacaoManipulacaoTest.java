@@ -4,6 +4,7 @@ import entidades.Avaliacao;
 import entidades.Cliente;
 import entidades.ItemEntretenimento;
 import entidades.Usuario;
+import manipulacao.AvaliacaoManipulacao;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

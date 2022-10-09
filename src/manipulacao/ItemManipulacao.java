@@ -1,5 +1,6 @@
 package manipulacao;
 
+import entidades.Administrador;
 import entidades.Avaliacao;
 import entidades.Filtro;
 import entidades.ItemEntretenimento;

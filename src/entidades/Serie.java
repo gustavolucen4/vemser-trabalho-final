@@ -23,8 +23,8 @@ public class Serie extends ItemEntretenimento {
         this.episodios = episodios;
     }
 
-    public Serie(String nome, String genero, String sinopse, String anoLancamento, int classificacao, double critica, String plataforma, List<Avaliacao> avaliacoes, int temporadas, int episodios) {
-        super(nome, genero, sinopse, anoLancamento, classificacao, critica, plataforma, avaliacoes);
+    public Serie(String nome, String genero, String sinopse, String anoLancamento, int classificacao,String plataforma,int temporadas, int episodios) {
+        super(nome, genero, sinopse, anoLancamento, classificacao, plataforma);
         this.temporadas = temporadas;
         this.episodios = episodios;
     }

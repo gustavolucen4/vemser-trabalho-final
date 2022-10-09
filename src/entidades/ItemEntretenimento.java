@@ -32,7 +32,7 @@ public class ItemEntretenimento implements Impressao {
         avaliacoes = new ArrayList<>();
     }
 
-    public ItemEntretenimento(String nome, String genero, String sinopse, String anoLancamento, Integer classificacao, double critica, String plataforma, List<Avaliacao> avaliacoes) {
+    public ItemEntretenimento(String nome, String genero, String sinopse, String anoLancamento, Integer classificacao, String plataforma) {
         this.id=contadorId++;
         this.nome = nome;
         this.genero = genero;
@@ -40,7 +40,6 @@ public class ItemEntretenimento implements Impressao {
         this.anoLancamento = anoLancamento;
         this.classificacao = classificacao;
         this.plataforma = plataforma;
-        this.avaliacoes = avaliacoes;
         avaliacoes = new ArrayList<>();
     }
 

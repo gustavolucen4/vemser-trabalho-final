@@ -1,6 +1,7 @@
 package testes;
 
 import entidades.ItemEntretenimento;
+import manipulacao.AssistidosManipulacao;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
