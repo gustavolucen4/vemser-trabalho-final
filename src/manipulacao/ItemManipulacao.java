@@ -62,7 +62,6 @@ public class ItemManipulacao {
 
 
     public boolean editarItemEntretenimento(Integer index, ItemEntretenimento itemProcurado){
-        //ItemEntretenimento itemEncontrado = entretenimentoList.get(id);
         if (entretenimentoList.get(index) != null){
             ItemEntretenimento itemEncontrado = entretenimentoList.get(index);
 
@@ -102,7 +101,6 @@ public class ItemManipulacao {
 
 
     public boolean deletarItemEntretenimentoPorIndice(Integer index) {
-
         if(entretenimentoList.get(index) != null){
             entretenimentoList.remove(entretenimentoList.get(index));
             System.out.println("Item removido!");

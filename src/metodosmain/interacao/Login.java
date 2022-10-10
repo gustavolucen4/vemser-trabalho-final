@@ -68,7 +68,7 @@ public class Login {
                     break;
 
                 } else {
-                    System.out.println("Opção informada não válida. Por favor, digite '1' para metodosmain.interacao.Login e '2' para Cadastro");
+                    System.err.println("Opção informada não válida. Por favor, digite '1' para metodosmain.interacao.Login e '2' para Cadastro");
                 }
             }
         }catch (Exception ex){
