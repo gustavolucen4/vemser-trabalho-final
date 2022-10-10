@@ -207,7 +207,6 @@ public class Menu {
                 }
             }
         }
-        scanner.close();
     }
 
 

@@ -29,23 +29,21 @@ public class Main {
         PreencherLista.preencherAdmins(usuarioManipulacao);
         PreencherLista.preencherClientes(usuarioManipulacao);
 
-        itemManipulacao.listarItemEntretenimento();
 
+        itemManipulacao.listarItemEntretenimento();
+        while (true) {
         //Metodo login usuario/adim
         usuarioLogado = Login.login(usuarioManipulacao, scanner);
         System.out.println(usuarioLogado.getTipoUsuario().getDescricao());
 
 
-        if (usuarioLogado.getTipoUsuario().getDescricao().equals(TipoUsuario.CLIENTE.getDescricao())) {
-            //Menu do Cliente
-            Menu.menuCliente(assistidosManipulacao, itemManipulacao, avaliacaoManipulacao, usuarioLogado, scanner);
-        } else {
-            //Menu do Admin
-            Menu.menuAdmin(usuarioManipulacao, itemManipulacao, avaliacaoManipulacao, usuarioLogado, scanner);
+            if (usuarioLogado.getTipoUsuario().getDescricao().equals(TipoUsuario.CLIENTE.getDescricao())) {
+                //Menu do Cliente
+                Menu.menuCliente(assistidosManipulacao, itemManipulacao, avaliacaoManipulacao, usuarioLogado, scanner);
+            } else {
+                //Menu do Admin
+                Menu.menuAdmin(usuarioManipulacao, itemManipulacao, avaliacaoManipulacao, usuarioLogado, scanner);
+            }
         }
-
-
-
-
     }
 }
