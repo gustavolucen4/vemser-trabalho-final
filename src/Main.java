@@ -30,7 +30,6 @@ public class Main {
         PreencherLista.preencherClientes(usuarioManipulacao);
 
 
-        itemManipulacao.listarItemEntretenimento();
         while (true) {
         //Metodo login usuario/adim
         usuarioLogado = Login.login(usuarioManipulacao, scanner);

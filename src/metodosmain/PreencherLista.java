@@ -24,7 +24,7 @@ public class PreencherLista {
 
             while (linha!=null){
                 String linhaArquivo[] = linha.split(",");
-                itemManipulacao.criarItemEntretenimento(new Filme(linhaArquivo[0],linhaArquivo[1],linhaArquivo[2],linhaArquivo[3],Integer.parseInt(linhaArquivo[4]),linhaArquivo[5],linhaArquivo[6]));
+                itemManipulacao.criarItemEntretenimento(new Filme(linhaArquivo[0],linhaArquivo[1],linhaArquivo[2],(linhaArquivo[3]),Integer.parseInt(linhaArquivo[4]),linhaArquivo[5],linhaArquivo[6]));
                 linha = br.readLine();
             }
 
@@ -50,8 +50,10 @@ public class PreencherLista {
             }
 
         }catch (FileNotFoundException ex){
+            System.err.println("errou aqui3");
             System.out.println(ex.getMessage());
         }catch (Exception ex){
+            System.err.println("errou aqui4");
             System.out.println(ex.getMessage());
         }
     }
