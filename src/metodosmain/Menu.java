@@ -244,7 +244,11 @@ public class Menu {
                     scanner.nextLine();
                     switch (metodoSelecionado) {
                         case 1 -> {
-                            assistidosManipulacao.listarAssistidos();
+                            if ((long) assistidosManipulacao.getAssistidos().size() != 0) {
+                                assistidosManipulacao.listarAssistidos();
+                            } else {
+                                System.err.println("Ainda não existem itens assistidos!");
+                            }
                         }
                         case 2 -> {
                             itemManipulacao.listarItemEntretenimento();
@@ -278,11 +282,13 @@ public class Menu {
                     scanner.nextLine();
                     switch (opcaoMenuClienteAvaliacoes) {
                         case 1 -> {
-                            avaliacaoManipulacao.listarAvaliacoes();
+                            if ((long) avaliacaoManipulacao.getAvaliacoes().size() != 0) {
+                                avaliacaoManipulacao.listarAvaliacoes();
+                            } else {
+                                System.err.println("Ainda não existem itens avaliados!");
+                            }
                         }
                         case 2 -> {
-                            avaliacaoManipulacao.listarAvaliacoes();
-
                             System.out.println("Criar Avaliação");
                             //Criar Avaliação
                             itemManipulacao.listarItemEntretenimento();
@@ -291,8 +297,6 @@ public class Menu {
                             Criar.criarAvaliacao(itemManipulacao, avaliacaoManipulacao, usuarioLogado, index, scanner);
                         }
                         case 3 -> {
-                            avaliacaoManipulacao.listarAvaliacoes();
-
                             System.out.println("Atualizar avaliação");
                             avaliacaoManipulacao.listarAvaliacoes();
                             //Atualizar avaliação
@@ -302,12 +306,15 @@ public class Menu {
                             Atualizar.atualizarAvaliacao(itemManipulacao, avaliacaoManipulacao, usuarioLogado, index, scanner);
                         }
                         case 4 -> {
+                            if ((long) avaliacaoManipulacao.getAvaliacoes().size() != 0){
+                                avaliacaoManipulacao.listarAvaliacoes();
+                                System.out.println("Digite o id/index que deseja deletar");
+                                Integer index = scanner.nextInt();
+                                Deletar.deletarAvaliacao(index, avaliacaoManipulacao);
+                            }
+                            System.err.println("Ainda não existem avaliações!");
 
-                            System.out.println("Deletar avaliação !");
-                            //Deletar avaliação
-                            System.out.println("Digite o id/index que deseja deletar");
-                            Integer index = scanner.nextInt();
-                            Deletar.deletarAvaliacao(index, avaliacaoManipulacao);
+
                         }
                         case 9 -> {
                             System.out.println("<---");
@@ -318,7 +325,7 @@ public class Menu {
                     }
                 }
                 case 9 -> {
-                    System.out.println("Você Saiu!");
+                    System.out.println("Você saiu!");
                 }
             }
         }

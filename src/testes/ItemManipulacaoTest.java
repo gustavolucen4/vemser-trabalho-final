@@ -21,11 +21,9 @@ public class ItemManipulacaoTest {
     public void deveRetornarlistarMediaAvaliacao() {
         ItemManipulacao itemManipulacao;
         ItemEntretenimento novoItem;
-        ItemEntretenimento novoItem2;
         Avaliacao avaliacao1;
         Avaliacao avaliacao2;
         novoItem = new ItemEntretenimento("Durinho de Matar", "Terror");
-        novoItem2 = new ItemEntretenimento("Durinho de Matar 2", "Terror");
         itemManipulacao = new ItemManipulacao();
         avaliacao1 = new Avaliacao();
         avaliacao2 = new Avaliacao();
@@ -33,7 +31,6 @@ public class ItemManipulacaoTest {
         avaliacao2.setNota(10.0);
         novoItem.adicionarAvaliacao(avaliacao1);
         novoItem.adicionarAvaliacao(avaliacao2);
-        Integer index = 0;
         itemManipulacao.criarItemEntretenimento(novoItem);
 
         boolean resultado = true;
