@@ -20,13 +20,11 @@ public  class Usuario implements Impressao {
         this.idade = idade;
         this.email = email;
         this.senha = senha;
-        tipoUsuario = TipoUsuario.CLIENTE;
     }
 
     //GETTERS AND SETTERS
 
     public Usuario() {
-        tipoUsuario = TipoUsuario.CLIENTE;
     }
 
     public Integer getId() {
@@ -88,4 +86,15 @@ public  class Usuario implements Impressao {
                 + "\n--------------");
     }
 
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", idade=" + idade +
+                ", email='" + email + '\'' +
+                ", senha='" + senha + '\'' +
+                ", tipoUsuario=" + tipoUsuario +
+                '}';
+    }
 }

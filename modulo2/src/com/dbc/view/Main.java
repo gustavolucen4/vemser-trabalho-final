@@ -2,35 +2,37 @@ package com.dbc.view;
 
 import com.dbc.enums.TipoUsuario;
 import com.dbc.model.Usuario;
+import com.dbc.service.UsuarioService;
 
-import java.awt.*;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Locale.setDefault(Locale.US);
+        UsuarioService usuarioService = new UsuarioService();
         Scanner scanner = new Scanner(System.in);
 
+        Usuario usuario = new Usuario();
+        usuario.setNome("Mario");
+        usuario.setEmail("Mario@hotmail.com");
+        usuario.setTipoUsuario(TipoUsuario.ADIMINISTRADOR);
+        usuario.setSenha("1234");
+        usuario.setIdade(50);
 
-        Usuario usuarioLogado;
+        Usuario usuario2 = new Usuario();
+        usuario2.setNome("Chris");
+        usuario2.setEmail("Chris@hotmail.com");
+        usuario2.setSenha("1344");
+        usuario2.setIdade(12);
 
 
+     //  usuarioService.adicionarUsuario(usuario);
 
-//        itemManipulacao.listarItemEntretenimento();
-//        while (true) {
-//        //Metodo login usuario/adim
-//        usuarioLogado = Login.login(usuarioManipulacao, scanner);
-//        System.out.println(usuarioLogado.getTipoUsuario().getDescricao());
-//
-//
-//            if (usuarioLogado.getTipoUsuario().getDescricao().equals(TipoUsuario.CLIENTE.getDescricao())) {
-//                //Menu do Cliente
-//                Menu.menuCliente(assistidosManipulacao, itemManipulacao, avaliacaoManipulacao, usuarioLogado, scanner);
-//            } else {
-//                //Menu do Admin
-//                Menu.menuAdmin(usuarioManipulacao, itemManipulacao, avaliacaoManipulacao, usuarioLogado, scanner);
-//            }
-//        }
+         usuarioService.removerUsuario(12);
+
+
+        //  usuarioService.editarUsuario(9,usuario2);
+
+       usuarioService.listarUsuarios();
+
     }
 }
