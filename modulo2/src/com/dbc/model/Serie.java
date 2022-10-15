@@ -1,50 +1,48 @@
 package com.dbc.model;
 
 public class Serie extends ItemEntretenimento {
-    private int temporadas;
-    private int episodios;
+    private Integer temporadas;
+    private Integer episodios;
 
     //Construtores
     public Serie() {
-        this.id=ItemEntretenimento.contadorId++;
         tipo = "serie";
     }
 
-    public Serie(int temporadas, int episodios) {
-        this.id=ItemEntretenimento.contadorId++;
+    public Serie(Integer temporadas, Integer episodios) {
         this.temporadas = temporadas;
         this.episodios = episodios;
         tipo = "serie";
     }
 
-    public Serie(String nome, String genero, int temporadas, int episodios) {
-        super(nome, genero);
+    public Serie(Integer id, String nome, String genero, Integer temporadas, Integer episodios) {
+        super(id, nome, genero);
         this.temporadas = temporadas;
         this.episodios = episodios;
         tipo = "serie";
     }
 
-    public Serie(String nome, String genero, String sinopse, String anoLancamento, int classificacao,String plataforma,int temporadas, int episodios) {
-        super(nome, genero, sinopse, anoLancamento, classificacao, plataforma);
+    public Serie(Integer id, String nome, String genero, String sinopse, String anoLancamento, Integer classificacao,String plataforma,Integer temporadas, Integer episodios) {
+        super(id, nome, genero, sinopse, anoLancamento, classificacao, plataforma);
         this.temporadas = temporadas;
         this.episodios = episodios;
         tipo = "serie";
     }
 
     //GETTERS AND SETTERS
-    public int getTemporadas() {
+    public Integer getTemporadas() {
         return temporadas;
     }
 
-    public void setTemporadas(int temporadas) {
+    public void setTemporadas(Integer temporadas) {
         this.temporadas = temporadas;
     }
 
-    public int getEpisodios() {
+    public Integer getEpisodios() {
         return episodios;
     }
 
-    public void setEpisodios(int episodios) {
+    public void setEpisodios(Integer episodios) {
         this.episodios = episodios;
     }
 

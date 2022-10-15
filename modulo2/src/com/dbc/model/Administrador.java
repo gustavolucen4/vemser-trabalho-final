@@ -9,8 +9,8 @@ public class Administrador extends Usuario{
         tipoUsuario = TipoUsuario.ADIMINISTRADOR;
     }
 
-    public Administrador(String nome, int idade, String email, String senha) {
-        super(nome, idade, email, senha);
+    public Administrador(Integer id, String nome, int idade, String email, String senha) {
+        super(id, nome, idade, email, senha);
         tipoUsuario = TipoUsuario.ADIMINISTRADOR;
     }
 }

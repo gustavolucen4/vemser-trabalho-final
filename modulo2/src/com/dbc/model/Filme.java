@@ -5,24 +5,22 @@ public class Filme extends ItemEntretenimento {
 
     //Construtores
     public Filme() {
-        this.id=ItemEntretenimento.contadorId++;
         tipo = "filme";
     }
 
     public Filme(String duracao) {
-        this.id=ItemEntretenimento.contadorId++;
         this.duracao = duracao;
         tipo = "filme";
     }
 
-    public Filme(String nome, String genero, String duracao) {
-        super(nome, genero);
+    public Filme(Integer id, String nome, String genero, String duracao) {
+        super(id, nome, genero);
         this.duracao = duracao;
         tipo = "filme";
     }
 
-    public Filme(String nome, String genero, String sinopse, String anoLancamento, int classificacao, String plataforma, String duracao) {
-        super(nome, genero, sinopse, anoLancamento, classificacao, plataforma);
+    public Filme(Integer id, String nome, String genero, String sinopse, String anoLancamento, int classificacao, String plataforma, String duracao) {
+        super(id, nome, genero, sinopse, anoLancamento, classificacao, plataforma);
         this.duracao = duracao;
         tipo = "filme";
     }

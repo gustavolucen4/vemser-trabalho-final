@@ -4,8 +4,6 @@ import com.dbc.enums.TipoUsuario;
 import com.dbc.interfaces.Impressao;
 
 public abstract class Usuario implements Impressao {
-
-    static Integer contadorId = 0;
     private Integer id;
     private String nome;
     private Integer idade;
@@ -15,8 +13,8 @@ public abstract class Usuario implements Impressao {
     protected TipoUsuario tipoUsuario;
 
     //Construtores
-    public Usuario(String nome, int idade, String email, String senha) {
-        this.id = contadorId++;
+    public Usuario(Integer id, String nome, int idade, String email, String senha) {
+        this.id = id;
         this.nome = nome;
         this.idade = idade;
         this.email = email;
@@ -24,8 +22,9 @@ public abstract class Usuario implements Impressao {
         tipoUsuario = TipoUsuario.CLIENTE;
     }
 
+    //GETTERS AND SETTERS
+
     public Usuario() {
-        this.id = contadorId++;
         tipoUsuario = TipoUsuario.CLIENTE;
     }
 
@@ -33,7 +32,10 @@ public abstract class Usuario implements Impressao {
         return id;
     }
 
-    //GETTERS AND SETTERS
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -46,7 +48,7 @@ public abstract class Usuario implements Impressao {
         return idade;
     }
 
-    public void setIdade(int idade) {
+    public void setIdade(Integer idade) {
         this.idade = idade;
     }
 

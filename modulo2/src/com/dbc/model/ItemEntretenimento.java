@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemEntretenimento implements Impressao {
-
-    static Integer contadorId=0;
     protected Integer id;
     protected String tipo;
     private String nome;
@@ -22,19 +20,18 @@ public class ItemEntretenimento implements Impressao {
 
     //Construtores
     public ItemEntretenimento() {
-        id=contadorId++;
         avaliacoes = new ArrayList<>();
     }
 
-    public ItemEntretenimento(String nome, String genero) {
-        this.id=contadorId++;
+    public ItemEntretenimento(Integer id, String nome, String genero) {
+        this.id = id;
         this.nome = nome;
         this.genero = genero;
         avaliacoes = new ArrayList<>();
     }
 
-    public ItemEntretenimento(String nome, String genero, String sinopse, String anoLancamento, Integer classificacao, String plataforma) {
-        this.id=contadorId++;
+    public ItemEntretenimento(Integer id, String nome, String genero, String sinopse, String anoLancamento, Integer classificacao, String plataforma) {
+        this.id = id;
         this.nome = nome;
         this.genero = genero;
         this.sinopse = sinopse;
@@ -48,6 +45,10 @@ public class ItemEntretenimento implements Impressao {
 
     public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getTipo(){

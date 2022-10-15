@@ -89,10 +89,6 @@ public class ItemManipulacao {
                 itemEncontrado.setPlataforma(itemProcurado.getPlataforma());
             }
 
-            if (itemProcurado.getPlataforma() != null) {
-                itemEncontrado.setPlataforma(itemProcurado.getPlataforma());
-
-            }
             return true;
         }
         System.out.println("Index não encontrado!");

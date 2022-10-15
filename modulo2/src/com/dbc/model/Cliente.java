@@ -13,8 +13,8 @@ public class Cliente extends Usuario {
         super();
     }
 
-    public Cliente(String nome, int idade, String email, String senha) {
-        super(nome, idade, email, senha);
+    public Cliente(Integer id, String nome, int idade, String email, String senha) {
+        super(id, nome, idade, email, senha);
         this.assistidos = new ArrayList<>();
         this.avaliacoes = new ArrayList<>();
     }
