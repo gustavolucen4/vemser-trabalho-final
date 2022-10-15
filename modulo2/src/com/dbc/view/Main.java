@@ -5,6 +5,7 @@ import com.dbc.model.Filme;
 import com.dbc.model.Filtro;
 import com.dbc.model.ItemEntretenimento;
 import com.dbc.model.Usuario;
+import com.dbc.service.AssistidosService;
 import com.dbc.service.ItemService;
 import com.dbc.service.UsuarioService;
 
@@ -38,7 +39,6 @@ public class Main {
         //  usuarioService.editarUsuario(9,usuario2);
 
        //usuarioService.listarUsuarios();
-
 
     }
 }

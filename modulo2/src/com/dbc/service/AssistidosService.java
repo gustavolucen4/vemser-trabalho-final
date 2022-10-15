@@ -14,14 +14,15 @@ public class AssistidosService {
         this.assitidosRepository = new AssitidosRepository();
     }
 
-    public List<ItemEntretenimento> listarAssistidos (Integer idUsuario){
+    public void listarAssistidos (Integer idUsuario){
        List<ItemEntretenimento> lista = null;
         try{
             lista = assitidosRepository.listarAssistidos(idUsuario);
+            lista.forEach(x -> x.imprimir());
         }catch (BancoDeDadosException ex){
             System.out.println("ERRO: "+ex.getMessage());
+            ex.printStackTrace();
         }
-        return lista;
     }
 
     public void deletarAssistidos (Integer idItem, Integer idUsuario){

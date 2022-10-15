@@ -25,8 +25,8 @@ public class AssitidosRepository implements Interacao {
 
             StringBuilder sql = new StringBuilder();
 
-            sql.append("SELECT * FROM ASSISTIDOS a");
-            sql.append("INNER JOIN ITEM_ENTRETENIMENTO ie ON (ie.id_item_entretenimento = a.id_item_entretenimento)");
+            sql.append("SELECT * FROM ASSISTIDOS a ");
+            sql.append("INNER JOIN ITEM_ENTRETENIMENTO ie ON (ie.id_item_entretenimento = a.id_item_entretenimento) ");
             sql.append("WHERE id_usuario = ? ");
 
             PreparedStatement stmt = con.prepareStatement(sql.toString());
@@ -37,7 +37,7 @@ public class AssitidosRepository implements Interacao {
 
             while (res.next()){
                 ItemEntretenimento item = new ItemEntretenimento();
-                item.setId(res.getInt("ie.id_item_entretenimento"));
+                item.setId(res.getInt("id_item_entretenimento"));
                 item.setNome(res.getString("nome"));
                 item.setTipo(res.getString("tipo"));
                 item.setGenero(res.getString("genero"));
@@ -70,7 +70,7 @@ public class AssitidosRepository implements Interacao {
         try {
             con = ConexaoBancoDeDados.getConnection();
 
-            String sql = "DELETE FROM AVALIACAO WHERE id_item_entretenimento = ? AND id_usuario = ? ";
+            String sql = "DELETE FROM ASSISTIDOS WHERE id_item_entretenimento = ? AND id_usuario = ? ";
 
             PreparedStatement stmt = con.prepareStatement(sql);
 
