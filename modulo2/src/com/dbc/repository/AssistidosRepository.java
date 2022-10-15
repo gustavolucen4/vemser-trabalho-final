@@ -3,7 +3,6 @@ package com.dbc.repository;
 import com.dbc.exceptions.BancoDeDadosException;
 import com.dbc.interfaces.Interacao;
 import com.dbc.model.ItemEntretenimento;
-import com.dbc.model.Usuario;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AssitidosRepository implements Interacao {
+public class AssistidosRepository implements Interacao {
 
 
     public List<ItemEntretenimento> listarAssistidos (Integer idUsuario) throws BancoDeDadosException {
