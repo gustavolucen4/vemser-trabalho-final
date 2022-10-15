@@ -2,7 +2,7 @@ package com.dbc.enums;
 
 public enum TipoUsuario {
     CLIENTE("cliente"),
-    ADIMINISTRADOR("adiministrador");
+    ADMINISTRADOR("administrador");
 
     private String descricao;
 

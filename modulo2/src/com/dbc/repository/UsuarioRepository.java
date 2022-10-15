@@ -155,7 +155,7 @@ public class UsuarioRepository implements Repositorio<Integer, Usuario> {
                 usuario.setEmail(res.getString("email"));
                 usuario.setSenha(res.getString("senha"));
                 if (res.getString("tipo_usuario").equalsIgnoreCase("administrador")) {
-                    usuario.setTipoUsuario(TipoUsuario.ADIMINISTRADOR);
+                    usuario.setTipoUsuario(TipoUsuario.ADMINISTRADOR);
 
                 }else {
                     usuario.setTipoUsuario(TipoUsuario.CLIENTE);
