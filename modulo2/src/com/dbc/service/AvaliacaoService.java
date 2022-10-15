@@ -16,7 +16,7 @@ public class AvaliacaoService {
     public void adicionarAvaliacao(Avaliacao avaliacao, Integer idUsuario, Integer idItem) {
         try {
             avaliacaoRepository.adicionar(avaliacao, idUsuario, idItem);
-            System.out.println("Avaliação adicionado com succeso!");
+            System.out.println("Avaliação adicionado com sucesso!");
         } catch (BancoDeDadosException e) {
             throw new RuntimeException(e.getCause());
         }

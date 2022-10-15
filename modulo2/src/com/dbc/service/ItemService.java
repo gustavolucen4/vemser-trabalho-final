@@ -19,7 +19,7 @@ public class ItemService {
     public void adicionarItemEntretenimento(ItemEntretenimento itemEntretenimento){
         try{
             ItemEntretenimento itemAdicionado = itemRepository.adicionar(itemEntretenimento);
-            System.out.println("Item adicionado com succeso!");
+            System.out.println("Item adicionado com sucesso!");
 
         } catch (BancoDeDadosException ex) {
             System.out.println(ex.getMessage());
