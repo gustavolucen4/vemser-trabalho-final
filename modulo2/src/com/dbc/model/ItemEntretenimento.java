@@ -23,8 +23,7 @@ public class ItemEntretenimento implements Impressao {
         avaliacoes = new ArrayList<>();
     }
 
-    public ItemEntretenimento(Integer id, String nome, String genero) {
-        this.id = id;
+    public ItemEntretenimento(String nome, String genero) {
         this.nome = nome;
         this.genero = genero;
         avaliacoes = new ArrayList<>();

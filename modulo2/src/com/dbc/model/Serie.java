@@ -15,8 +15,8 @@ public class Serie extends ItemEntretenimento {
         tipo = "serie";
     }
 
-    public Serie(Integer id, String nome, String genero, Integer temporadas, Integer episodios) {
-        super(id, nome, genero);
+    public Serie(String nome, String genero, Integer temporadas, Integer episodios) {
+        super(nome, genero);
         this.temporadas = temporadas;
         this.episodios = episodios;
         tipo = "serie";

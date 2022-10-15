@@ -13,8 +13,8 @@ public class Filme extends ItemEntretenimento {
         tipo = "filme";
     }
 
-    public Filme(Integer id, String nome, String genero, String duracao) {
-        super(id, nome, genero);
+    public Filme(String nome, String genero, String duracao) {
+        super(nome, genero);
         this.duracao = duracao;
         tipo = "filme";
     }

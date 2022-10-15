@@ -109,22 +109,22 @@ public class ItemRepository implements Repositorio<Integer, ItemEntretenimento> 
             sql.append("UPDATE ITEM_ENTRETENIMENTO SET \n");
 
             if (item.getNome() != null){
-                sql.append("nome = ?, ");
+                sql.append("nome = ? ,");
             }
             if (item.getGenero() != null) {
-                sql.append("genero = ?, ");
+                sql.append("genero = ?,");
             }
             if (item.getSinopse() != null) {
-                sql.append("sinopse = ?, ");
+                sql.append("sinopse = ? ,");
             }
             if (item.getAnoLancamento() != null) {
-                sql.append("ano_lancamento = ?, ");
+                sql.append("ano_lancamento = ? ,");
             }
             if (item.getClassificacao() != null) {
-                sql.append("classificacao = ?, ");
+                sql.append("classificacao = ? ,");
             }
             if (item.getPlataforma() != null) {
-                sql.append("plataforma = ?, ");
+                sql.append("plataforma = ? ,");
             }
 
             sql.deleteCharAt(sql.length() - 1); //remove o ultimo ','
@@ -222,13 +222,13 @@ public class ItemRepository implements Repositorio<Integer, ItemEntretenimento> 
 
             StringBuilder sql = new StringBuilder();
 
-            sql.append("SELECT * FROM ITEM_ENTRETENIMENTO");
-            sql.append("WHERE tipo = ? AND genero = ? AND classificacao = ?");
+            sql.append("SELECT * FROM ITEM_ENTRETENIMENTO ");
+            sql.append("WHERE UPPER(tipo) = ? AND UPPER(genero) = ? AND classificacao <= ?");
 
             PreparedStatement stmt = con.prepareStatement(sql.toString());
 
-            stmt.setString(1, filtro.getTipo());
-            stmt.setString(2, filtro.getGenero());
+            stmt.setString(1, filtro.getTipo().toUpperCase());
+            stmt.setString(2, filtro.getGenero().toUpperCase());
             stmt.setInt(3, filtro.getClassificacao());
 
             ResultSet res = stmt.executeQuery();

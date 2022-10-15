@@ -55,16 +55,15 @@ public class ItemService {
         }
     }
 
-    public List<ItemEntretenimento> filtrarItemEntretenimento(Filtro filtro){
+    public void filtrarItemEntretenimento(Filtro filtro){
         try{
             if (filtro != null) {
                 List<ItemEntretenimento> resultado = itemRepository.filtrarItens(filtro);
-                return resultado;
+                resultado.forEach(x -> x.imprimir());
             }
         } catch (BancoDeDadosException ex) {
             System.out.println("ERRO: "+ex.getMessage());
         }
-        return null;
     }
 
     public void mediaAvaliacao(Integer id){
