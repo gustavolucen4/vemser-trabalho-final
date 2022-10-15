@@ -191,19 +191,21 @@ public class UsuarioRepository implements Repositorio<Integer, Usuario> {
 
             ResultSet res = stmt.executeQuery();
 
-            usuario.setId(res.getInt("id_usuario"));
-            usuario.setNome(res.getString("nome"));
-            usuario.setIdade(res.getInt("idade"));
-            usuario.setEmail(res.getString("email"));
-            usuario.setSenha(res.getString("senha"));
-            if (res.getString("tipo_usuario").equalsIgnoreCase("administrador")) {
-                usuario.setTipoUsuario(TipoUsuario.ADMINISTRADOR);
+            while (res.next()){
+                usuario.setId(res.getInt("id_usuario"));
+                usuario.setNome(res.getString("nome"));
+                usuario.setIdade(res.getInt("idade"));
+                usuario.setEmail(res.getString("email"));
+                usuario.setSenha(res.getString("senha"));
+                if (res.getString("tipo_usuario").equalsIgnoreCase("administrador")) {
+                    usuario.setTipoUsuario(TipoUsuario.ADMINISTRADOR);
 
-            }else {
-                usuario.setTipoUsuario(TipoUsuario.CLIENTE);
+                }else {
+                    usuario.setTipoUsuario(TipoUsuario.CLIENTE);
+                }
             }
 
-            System.out.println("Pegar Usuário: " + res.getInt("id_usuario"));
+            System.out.println("Usuário consultado!!");
 
         } catch (SQLException e) {
             throw new BancoDeDadosException(e.getCause());

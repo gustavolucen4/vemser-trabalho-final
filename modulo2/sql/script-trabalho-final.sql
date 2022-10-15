@@ -99,7 +99,7 @@ VALUES (SEQ_USUARIO.nextval, 'aliso', 21, 'aliso@gmail.com', '1234', 'administra
 INSERT INTO USUARIO(id_usuario, nome, idade, email, senha, tipo_usuario)
 VALUES (SEQ_USUARIO.nextval, 'seu ze', 60, 'ze@gmail.com', '1234', 'cliente');
 
-INSERT INTO ASSISTIDOS(id_usuario,id_item_entretenimento)
+INSERT INTO ASSISTIDOS(id_usuario, id_item_entretenimento)
 VALUES (1,1);
 
 INSERT INTO AVALIACAO (id_usuario,id_item_entretenimento,nota,comentario)
@@ -113,3 +113,6 @@ SELECT * FROM AVALIACAO;
 
 SELECT * FROM ASSISTIDOS;
 
+SELECT * FROM ASSISTIDOS a 
+INNER JOIN ITEM_ENTRETENIMENTO ie ON (ie.id_item_entretenimento = a.id_item_entretenimento)
+WHERE id_usuario = 1;

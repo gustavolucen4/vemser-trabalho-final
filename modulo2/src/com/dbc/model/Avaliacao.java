@@ -21,6 +21,11 @@ public class Avaliacao implements Impressao {
         this.comentario = comentario;
     }
 
+    public Avaliacao(Double nota, String comentario) {
+        this.nota = nota;
+        this.comentario = comentario;
+    }
+
     //GETTERS AND SETTERS
     public Usuario getUsuario() {
         return usuario;
@@ -58,10 +63,10 @@ public class Avaliacao implements Impressao {
     public void imprimir() {
         System.out.println("-------------------------\n" +
                 "Avaliacao{" +
-                "usuario=" + usuario.getEmail() +
-                "usuario id=" + usuario.getId() +
-                ", itemEntretenimento =" + itemEntretenimento.getNome() +
-                ", itemEntretenimento id=" + itemEntretenimento.getId() +
+                "Usuario=" + usuario.getEmail() +
+                " Usuario id=" + usuario.getId() +
+                ", Item =" + itemEntretenimento.getNome() +
+                ", Item id=" + itemEntretenimento.getId() +
                 ", nota=" + nota +
                 ", comentario='" + comentario + '\'' +
                 '}' +

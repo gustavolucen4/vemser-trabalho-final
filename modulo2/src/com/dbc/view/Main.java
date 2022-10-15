@@ -1,11 +1,9 @@
 package com.dbc.view;
 
 import com.dbc.enums.TipoUsuario;
-import com.dbc.model.Filme;
-import com.dbc.model.Filtro;
-import com.dbc.model.ItemEntretenimento;
-import com.dbc.model.Usuario;
+import com.dbc.model.*;
 import com.dbc.service.AssistidosService;
+import com.dbc.service.AvaliacaoService;
 import com.dbc.service.ItemService;
 import com.dbc.service.UsuarioService;
 
@@ -13,6 +11,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        AvaliacaoService avaliacaoService = new AvaliacaoService();
         UsuarioService usuarioService = new UsuarioService();
         Scanner scanner = new Scanner(System.in);
 
@@ -35,10 +34,13 @@ public class Main {
 
        // usuarioService.removerUsuario(13);
 
-
         //  usuarioService.editarUsuario(9,usuario2);
 
        //usuarioService.listarUsuarios();
 
+        //usuarioService.pegarUsuario(1);
+
+        //avaliacaoService.adicionarAvaliacao(new Avaliacao(9.5 ,"Triste"), 1, 2);
+        //avaliacaoService.editarAvaliacao(new Avaliacao(9.0, "Muito bom para chorar."), 1, 2);
     }
 }

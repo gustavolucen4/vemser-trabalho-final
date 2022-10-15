@@ -51,5 +51,13 @@ public class UsuarioService {
         }
     }
 
-
+    public void pegarUsuario(Integer id){
+        try{
+            Usuario usuario = usuarioRepository.pegar(id);
+            usuario.imprimir();
+        }catch (BancoDeDadosException ex){
+            System.out.println("ERRO: "+ex.getMessage());
+            ex.printStackTrace();
+        }
+    }
 }

@@ -22,14 +22,39 @@ public class AvaliacaoService {
         }
     }
 
-    public void listarAvaliacoes(Integer idUsuario) {
+    public void listarAvaliacoes() {
+        try {
+            List<Avaliacao> avaliacaoList = avaliacaoRepository.listarAvaliacoes();
+            avaliacaoList.forEach(Avaliacao::imprimir);
+        } catch (BancoDeDadosException e) {
+            System.out.println(e.getMessage());
+            throw new RuntimeException(e.getCause());
+        }
+    }
+
+    public void listarAvaliacoesUsuario(Integer idUsuario) {
         try {
             List<Avaliacao> avaliacaoList = avaliacaoRepository.listarAvaliacoesUsuario(idUsuario);
-            avaliacaoList.forEach(System.out::println);
+            avaliacaoList.forEach(Avaliacao::imprimir);
         } catch (BancoDeDadosException e) {
             throw new RuntimeException(e.getCause());
         }
     }
 
+    public void removerAvaliacao(Integer idUsuario, Integer idItem){
+        try{
+            boolean conseguiuRemover = avaliacaoRepository.remover(idUsuario, idItem);
+        }catch (BancoDeDadosException ex){
+            System.out.println("ERRO: "+ex.getMessage());
+        }
+    }
 
+    public void editarAvaliacao(Avaliacao avaliacao, Integer idUsuario, Integer idItem){
+        try{
+            boolean conseguiEditar = avaliacaoRepository.editar(avaliacao, idUsuario, idItem);
+            System.out.println("Avaliação editada!!");
+        }catch (BancoDeDadosException ex){
+            System.out.println("ERRO: "+ex.getMessage());
+        }
+    }
 }

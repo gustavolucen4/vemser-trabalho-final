@@ -298,23 +298,25 @@ public class ItemRepository implements Repositorio<Integer, ItemEntretenimento> 
 
         try {
             conn = ConexaoBancoDeDados.getConnection();
-            String sql = "SELECT * FROM ITEM_ENTRETENIMENTO WHERE id_usuario = ?";
+            String sql = "SELECT * FROM ITEM_ENTRETENIMENTO WHERE id_item_entretenimento = ?";
 
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, id);
 
             ResultSet res = stmt.executeQuery();
 
-            item.setId(res.getInt("id_item_entretenimento"));
-            item.setNome(res.getString("nome"));
-            item.setTipo(res.getString("tipo"));
-            item.setGenero(res.getString("genero"));
-            item.setSinopse(res.getString("sinopse"));
-            item.setAnoLancamento(res.getString("ano_lancamento"));
-            item.setClassificacao(res.getInt("classificacao"));
-            item.setPlataforma(res.getString("plataforma"));
+            while (res.next()){
+                item.setId(res.getInt("id_item_entretenimento"));
+                item.setNome(res.getString("nome"));
+                item.setTipo(res.getString("tipo"));
+                item.setGenero(res.getString("genero"));
+                item.setSinopse(res.getString("sinopse"));
+                item.setAnoLancamento(res.getString("ano_lancamento"));
+                item.setClassificacao(res.getInt("classificacao"));
+                item.setPlataforma(res.getString("plataforma"));
+            }
 
-            System.out.println("Pegar Item: " + res.getInt("id_item_entretenimento"));
+            System.out.println("Item Pego!");
 
         } catch (SQLException e) {
             throw new BancoDeDadosException(e.getCause());
