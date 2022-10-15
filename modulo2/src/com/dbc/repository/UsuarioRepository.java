@@ -101,7 +101,7 @@ public class UsuarioRepository implements Repositorio<Integer, Usuario> {
             sql.append(" nome = ?,");
             sql.append(" idade = ?,");
             sql.append(" email = ?,");
-            sql.append(" senha = ?,");
+            sql.append(" senha = ?");
             sql.append(" WHERE id_usuario = ? ");
 
             PreparedStatement stmt = conn.prepareStatement(sql.toString());
@@ -110,6 +110,7 @@ public class UsuarioRepository implements Repositorio<Integer, Usuario> {
             stmt.setInt(2, usuario.getIdade());
             stmt.setString(3, usuario.getEmail());
             stmt.setString(4, usuario.getSenha());
+
             stmt.setInt(5, id);
 
             int res = stmt.executeUpdate();
@@ -152,8 +153,13 @@ public class UsuarioRepository implements Repositorio<Integer, Usuario> {
                 usuario.setIdade(res.getInt("idade"));
                 usuario.setEmail(res.getString("email"));
                 usuario.setSenha(res.getString("senha"));
-                usuario.setTipoUsuario(TipoUsuario.valueOf(res.getString("tipo_usuario")));
-                usuarioList.add(usuario);
+                if (res.getString("tipo_usuario").equalsIgnoreCase("administrador")) {
+                    usuario.setTipoUsuario(TipoUsuario.ADIMINISTRADOR);
+
+                }else {
+                    usuario.setTipoUsuario(TipoUsuario.CLIENTE);
+                }
+               usuarioList.add(usuario);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

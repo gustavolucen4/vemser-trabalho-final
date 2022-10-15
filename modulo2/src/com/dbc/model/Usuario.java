@@ -15,16 +15,13 @@ public  class Usuario implements Impressao {
 
     //Construtores
     public Usuario(String nome, int idade, String email, String senha) {
-
         this.nome = nome;
         this.idade = idade;
         this.email = email;
         this.senha = senha;
-        tipoUsuario = TipoUsuario.CLIENTE;
     }
 
     public Usuario() {
-        tipoUsuario = TipoUsuario.CLIENTE;
     }
 
     public Integer getId() {
@@ -86,4 +83,15 @@ public  class Usuario implements Impressao {
                 + "\n--------------");
     }
 
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", idade=" + idade +
+                ", email='" + email + '\'' +
+                ", senha='" + senha + '\'' +
+                ", tipoUsuario=" + tipoUsuario +
+                '}';
+    }
 }
