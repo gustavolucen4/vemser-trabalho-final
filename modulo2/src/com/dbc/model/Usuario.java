@@ -3,7 +3,8 @@ package com.dbc.model;
 import com.dbc.enums.TipoUsuario;
 import com.dbc.interfaces.Impressao;
 
-public abstract class Usuario implements Impressao {
+public  class Usuario implements Impressao {
+
     private Integer id;
     private String nome;
     private Integer idade;
@@ -36,6 +37,7 @@ public abstract class Usuario implements Impressao {
         this.id = id;
     }
 
+    //GETTERS AND SETTERS
     public String getNome() {
         return nome;
     }
@@ -72,10 +74,8 @@ public abstract class Usuario implements Impressao {
         return this.tipoUsuario;
     }
 
-    public void setUsuarioAdmin(Usuario cliente){
-        if(this.tipoUsuario.equals(TipoUsuario.ADIMINISTRADOR)){
-            cliente.tipoUsuario= TipoUsuario.ADIMINISTRADOR;
-        }
+    public void setTipoUsuario(TipoUsuario tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
     }
 
     @Override
