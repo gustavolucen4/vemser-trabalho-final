@@ -2,6 +2,7 @@ package com.dbc.repository;
 
 import com.dbc.enums.TipoUsuario;
 import com.dbc.exceptions.BancoDeDadosException;
+import com.dbc.interfaces.Repositorio;
 import com.dbc.model.Usuario;
 
 import java.sql.*;

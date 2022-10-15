@@ -3,7 +3,7 @@ package com.dbc.model;
 public class Filtro  {
     public String tipo;
     private String genero;
-    private int classificacao;
+    private Integer classificacao;
 
     //Construtores
     public Filtro() {
@@ -32,11 +32,11 @@ public class Filtro  {
         this.genero = genero;
     }
 
-    public int getClassificacao() {
+    public Integer getClassificacao() {
         return classificacao;
     }
 
-    public void setClassificacao(int classificacao) {
+    public void setClassificacao(Integer classificacao) {
         this.classificacao = classificacao;
     }
 

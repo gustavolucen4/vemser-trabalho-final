@@ -20,8 +20,6 @@ public class ItemManipulacao {
         entretenimentoList = new ArrayList<>();
     }
 
-
-
     public Double listarMediaAvaliacao(Integer index){
         ItemEntretenimento item = entretenimentoList.get(index);
 

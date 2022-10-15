@@ -3,6 +3,7 @@ package com.dbc.repository;
 import com.dbc.exceptions.BancoDeDadosException;
 import com.dbc.interfaces.Repositorio;
 import com.dbc.model.Filme;
+import com.dbc.model.Filtro;
 import com.dbc.model.ItemEntretenimento;
 import com.dbc.model.Serie;
 
@@ -28,34 +29,33 @@ public class ItemRepository implements Repositorio<Integer, ItemEntretenimento> 
         }
     }
 
-
-    public Filme adicionarFilme(Filme filme) throws BancoDeDadosException {
+    @Override
+    public ItemEntretenimento adicionar(ItemEntretenimento item) throws BancoDeDadosException {
         Connection con = null;
         try {
             con = ConexaoBancoDeDados.getConnection();
 
             Integer proximoId = this.getProximoId(con);
-            filme.setId(proximoId);
+            item.setId(proximoId);
 
             String sql = "INSERT INTO ITEM_ENTRETENIMENTO\n" +
-                    "(id_item_entretenimento , nome, tipo, genero, sinopse, ano_lancamento, classificacao, plataforma, duracao)\n" +
-                    "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)\n";
+                    "(id_item_entretenimento , nome, tipo, genero, sinopse, ano_lancamento, classificacao, plataforma)\n" +
+                    "VALUES(?, ?, ?, ?, ?, ?, ?, ?)\n";
 
             PreparedStatement stmt = con.prepareStatement(sql);
 
-            stmt.setInt(1, filme.getId());
-            stmt.setString(2, filme.getNome());
-            stmt.setString(3, filme.getTipo());
-            stmt.setString(4, filme.getGenero());
-            stmt.setString(5, filme.getSinopse());
-            stmt.setString(6, filme.getAnoLancamento());
-            stmt.setInt(7, filme.getClassificacao());
-            stmt.setString(8, filme.getPlataforma());
-            stmt.setString(9, filme.getDuracao());
+            stmt.setInt(1, item.getId());
+            stmt.setString(2, item.getNome());
+            stmt.setString(3, item.getTipo());
+            stmt.setString(4, item.getGenero());
+            stmt.setString(5, item.getSinopse());
+            stmt.setString(6, item.getAnoLancamento());
+            stmt.setInt(7, item.getClassificacao());
+            stmt.setString(8, item.getPlataforma());
 
             int res = stmt.executeUpdate();
             System.out.println("adicionarItem.res=" + res);
-            return filme;
+            return item;
         } catch (SQLException e) {
             throw new BancoDeDadosException(e.getCause());
         } finally {
@@ -68,48 +68,6 @@ public class ItemRepository implements Repositorio<Integer, ItemEntretenimento> 
             }
         }
     }
-
-    public Serie adicionarSerie(Serie serie) throws BancoDeDadosException {
-        Connection con = null;
-        try {
-            con = ConexaoBancoDeDados.getConnection();
-
-            Integer proximoId = this.getProximoId(con);
-            serie.setId(proximoId);
-
-            String sql = "INSERT INTO ITEM_ENTRETENIMENTO\n" +
-                    "(id_item_entretenimento , nome, tipo, genero, sinopse, ano_lancamento, classificacao, plataforma, temporadas, episodios)\n" +
-                    "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)\n";
-
-            PreparedStatement stmt = con.prepareStatement(sql);
-
-            stmt.setInt(1, serie.getId());
-            stmt.setString(2, serie.getNome());
-            stmt.setString(3, serie.getTipo());
-            stmt.setString(4, serie.getGenero());
-            stmt.setString(5, serie.getSinopse());
-            stmt.setString(6, serie.getAnoLancamento());
-            stmt.setInt(7, serie.getClassificacao());
-            stmt.setString(8, serie.getPlataforma());
-            stmt.setInt(9, serie.getTemporadas());
-            stmt.setInt(9, serie.getEpisodios());
-
-            int res = stmt.executeUpdate();
-            System.out.println("adicionarItem.res=" + res);
-            return serie;
-        } catch (SQLException e) {
-            throw new BancoDeDadosException(e.getCause());
-        } finally {
-            try {
-                if (con != null) {
-                    con.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
 
     @Override
     public boolean remover(Integer id) throws BancoDeDadosException {
@@ -141,8 +99,8 @@ public class ItemRepository implements Repositorio<Integer, ItemEntretenimento> 
         }
     }
 
-
-    public boolean editarFilme(Integer id, Filme filme) throws BancoDeDadosException {
+    @Override
+    public boolean editar(Integer id, ItemEntretenimento item) throws BancoDeDadosException {
         Connection con = null;
         try {
             con = ConexaoBancoDeDados.getConnection();
@@ -150,26 +108,23 @@ public class ItemRepository implements Repositorio<Integer, ItemEntretenimento> 
             StringBuilder sql = new StringBuilder();
             sql.append("UPDATE ITEM_ENTRETENIMENTO SET \n");
 
-            if (filme.getNome() != null){
+            if (item.getNome() != null){
                 sql.append("nome = ?, ");
             }
-            if (filme.getGenero() != null) {
+            if (item.getGenero() != null) {
                 sql.append("genero = ?, ");
             }
-            if (filme.getSinopse() != null) {
+            if (item.getSinopse() != null) {
                 sql.append("sinopse = ?, ");
             }
-            if (filme.getAnoLancamento() != null) {
+            if (item.getAnoLancamento() != null) {
                 sql.append("ano_lancamento = ?, ");
             }
-            if (filme.getClassificacao() != null) {
+            if (item.getClassificacao() != null) {
                 sql.append("classificacao = ?, ");
             }
-            if (filme.getPlataforma() != null) {
+            if (item.getPlataforma() != null) {
                 sql.append("plataforma = ?, ");
-            }
-            if (filme.getDuracao() != null) {
-                sql.append("duracao = ?, ");
             }
 
             sql.deleteCharAt(sql.length() - 1); //remove o ultimo ','
@@ -179,26 +134,23 @@ public class ItemRepository implements Repositorio<Integer, ItemEntretenimento> 
 
             int index = 1;
 
-            if (filme.getNome() != null){
-                stmt.setString(index++, filme.getNome());
+            if (item.getNome() != null){
+                stmt.setString(index++, item.getNome());
             }
-            if (filme.getGenero() != null) {
-                stmt.setString(index++, filme.getGenero());
+            if (item.getGenero() != null) {
+                stmt.setString(index++, item.getGenero());
             }
-            if (filme.getSinopse() != null) {
-                stmt.setString(index++, filme.getSinopse());
+            if (item.getSinopse() != null) {
+                stmt.setString(index++, item.getSinopse());
             }
-            if (filme.getAnoLancamento() != null) {
-                stmt.setString(index++, filme.getAnoLancamento());
+            if (item.getAnoLancamento() != null) {
+                stmt.setString(index++, item.getAnoLancamento());
             }
-            if (filme.getClassificacao() != null) {
-                stmt.setInt(index++, filme.getClassificacao());
+            if (item.getClassificacao() != null) {
+                stmt.setInt(index++, item.getClassificacao());
             }
-            if (filme.getPlataforma() != null) {
-                stmt.setString(index++, filme.getPlataforma());
-            }
-            if (filme.getDuracao() != null) {
-                stmt.setString(index++, filme.getDuracao());
+            if (item.getPlataforma() != null) {
+                stmt.setString(index++, item.getPlataforma());
             }
 
             stmt.setInt(index, id);
@@ -221,91 +173,6 @@ public class ItemRepository implements Repositorio<Integer, ItemEntretenimento> 
         }
     }
 
-    public boolean editarSerie(Integer id, Serie serie) throws BancoDeDadosException {
-        Connection con = null;
-        try {
-            con = ConexaoBancoDeDados.getConnection();
-
-            StringBuilder sql = new StringBuilder();
-            sql.append("UPDATE ITEM_ENTRETENIMENTO SET \n");
-
-            if (serie.getNome() != null){
-                sql.append("nome = ?, ");
-            }
-            if (serie.getGenero() != null) {
-                sql.append("genero = ?, ");
-            }
-            if (serie.getSinopse() != null) {
-                sql.append("sinopse = ?, ");
-            }
-            if (serie.getAnoLancamento() != null) {
-                sql.append("ano_lancamento = ?, ");
-            }
-            if (serie.getClassificacao() != null) {
-                sql.append("classificacao = ?, ");
-            }
-            if (serie.getPlataforma() != null) {
-                sql.append("plataforma = ?, ");
-            }
-            if (serie.getTemporadas() != null) {
-                sql.append("temporadas = ?, ");
-            }
-            if (serie.getEpisodios() != null) {
-                sql.append("episodios = ?, ");
-            }
-
-            sql.deleteCharAt(sql.length() - 1); //remove o ultimo ','
-            sql.append(" WHERE id_item_entretenimento = ? ");
-
-            PreparedStatement stmt = con.prepareStatement(sql.toString());
-
-            int index = 1;
-
-            if (serie.getNome() != null){
-                stmt.setString(index++, serie.getNome());
-            }
-            if (serie.getGenero() != null) {
-                stmt.setString(index++, serie.getGenero());
-            }
-            if (serie.getSinopse() != null) {
-                stmt.setString(index++, serie.getSinopse());
-            }
-            if (serie.getAnoLancamento() != null) {
-                stmt.setString(index++, serie.getAnoLancamento());
-            }
-            if (serie.getClassificacao() != null) {
-                stmt.setInt(index++, serie.getClassificacao());
-            }
-            if (serie.getPlataforma() != null) {
-                stmt.setString(index++, serie.getPlataforma());
-            }
-            if (serie.getTemporadas() != null) {
-                stmt.setInt(index++, serie.getTemporadas());
-            }
-            if (serie.getEpisodios() != null) {
-                stmt.setInt(index++, serie.getEpisodios());
-            }
-
-            stmt.setInt(index, id);
-
-            // Executa-se a consulta
-            int res = stmt.executeUpdate();
-            System.out.println("editarSerie.res=" + res);
-
-            return res > 0;
-        } catch (SQLException e) {
-            throw new BancoDeDadosException(e.getCause());
-        } finally {
-            try {
-                if (con != null) {
-                    con.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
     @Override
     public List<ItemEntretenimento> listar() throws BancoDeDadosException {
         List<ItemEntretenimento> itemEntretenimentos = new ArrayList<>();
@@ -313,7 +180,7 @@ public class ItemRepository implements Repositorio<Integer, ItemEntretenimento> 
 
         try{
             con = ConexaoBancoDeDados.getConnection();
-            Statement stmt =con.createStatement();
+            Statement stmt = con.createStatement();
 
             String sql = "SELECT * FROM ITEM_ENTRETENIMENTO";
             ResultSet res = stmt.executeQuery(sql);
@@ -344,5 +211,86 @@ public class ItemRepository implements Repositorio<Integer, ItemEntretenimento> 
             }
         }
         return itemEntretenimentos;
+    }
+
+    public List<ItemEntretenimento> filtrarItens(Filtro filtro) throws BancoDeDadosException {
+        List<ItemEntretenimento> itemEntretenimentos = new ArrayList<>();
+        Connection con = null;
+
+        try{
+            con = ConexaoBancoDeDados.getConnection();
+
+            StringBuilder sql = new StringBuilder();
+
+            sql.append("SELECT * FROM ITEM_ENTRETENIMENTO");
+            sql.append("WHERE tipo = ? AND genero = ? AND classificacao = ?");
+
+            PreparedStatement stmt = con.prepareStatement(sql.toString());
+
+            stmt.setString(1, filtro.getTipo());
+            stmt.setString(2, filtro.getGenero());
+            stmt.setInt(3, filtro.getClassificacao());
+
+            ResultSet res = stmt.executeQuery();
+
+            while (res.next()){
+                ItemEntretenimento item = new ItemEntretenimento();
+                item.setId(res.getInt("id_item_entretenimento"));
+                item.setNome(res.getString("nome"));
+                item.setTipo(res.getString("tipo"));
+                item.setGenero(res.getString("genero"));
+                item.setSinopse(res.getString("sinopse"));
+                item.setAnoLancamento(res.getString("ano_lancamento"));
+                item.setClassificacao(res.getInt("classificacao"));
+                item.setPlataforma(res.getString("plataforma"));
+
+                itemEntretenimentos.add(item);
+            }
+
+        }catch (SQLException ex){
+            throw new BancoDeDadosException(ex.getCause());
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return itemEntretenimentos;
+    }
+
+    public Double mediaAvaliacoes(Integer id) throws BancoDeDadosException{
+        Double media = null;
+        Connection con = null;
+
+        try {
+            con = ConexaoBancoDeDados.getConnection();
+
+            StringBuilder sql = new StringBuilder();
+            sql.append("SELECT AVG(nota) as media FROM AVALIACAO \n");
+            sql.append("WHERE id_item_entretenimento = ? ");
+
+            PreparedStatement stmt = con.prepareStatement(sql.toString());
+
+            stmt.setInt(1, id);
+
+            ResultSet res = stmt.executeQuery();
+
+            media = res.getDouble("media");
+
+        }catch (SQLException ex){
+            throw new BancoDeDadosException(ex.getCause());
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return media;
     }
 }

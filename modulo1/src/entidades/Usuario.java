@@ -72,7 +72,7 @@ public abstract class Usuario implements Impressao {
 
     public void setUsuarioAdmin(Usuario cliente){
         if(this.tipoUsuario.equals(TipoUsuario.ADIMINISTRADOR)){
-            cliente.tipoUsuario= TipoUsuario.ADIMINISTRADOR;
+            cliente.tipoUsuario = TipoUsuario.ADIMINISTRADOR;
         }
     }
 
