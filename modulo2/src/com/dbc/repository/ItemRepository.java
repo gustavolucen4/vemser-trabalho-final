@@ -1,11 +1,9 @@
 package com.dbc.repository;
 
+import com.dbc.enums.TipoUsuario;
 import com.dbc.exceptions.BancoDeDadosException;
 import com.dbc.interfaces.Repositorio;
-import com.dbc.model.Filme;
-import com.dbc.model.Filtro;
-import com.dbc.model.ItemEntretenimento;
-import com.dbc.model.Serie;
+import com.dbc.model.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -292,5 +290,43 @@ public class ItemRepository implements Repositorio<Integer, ItemEntretenimento> 
             }
         }
         return media;
+    }
+
+    public ItemEntretenimento pegar(Integer id) throws BancoDeDadosException {
+        Connection conn = null;
+        ItemEntretenimento item = new ItemEntretenimento();
+
+        try {
+            conn = ConexaoBancoDeDados.getConnection();
+            String sql = "SELECT * FROM ITEM_ENTRETENIMENTO WHERE id_usuario = ?";
+
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, id);
+
+            ResultSet res = stmt.executeQuery();
+
+            item.setId(res.getInt("id_item_entretenimento"));
+            item.setNome(res.getString("nome"));
+            item.setTipo(res.getString("tipo"));
+            item.setGenero(res.getString("genero"));
+            item.setSinopse(res.getString("sinopse"));
+            item.setAnoLancamento(res.getString("ano_lancamento"));
+            item.setClassificacao(res.getInt("classificacao"));
+            item.setPlataforma(res.getString("plataforma"));
+
+            System.out.println("Pegar Item: " + res.getInt("id_item_entretenimento"));
+
+        } catch (SQLException e) {
+            throw new BancoDeDadosException(e.getCause());
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return item;
     }
 }

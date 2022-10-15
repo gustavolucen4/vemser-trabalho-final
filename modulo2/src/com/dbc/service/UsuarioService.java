@@ -50,4 +50,6 @@ public class UsuarioService {
             throw new RuntimeException(e.getCause());
         }
     }
+
+
 }

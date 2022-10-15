@@ -176,4 +176,46 @@ public class UsuarioRepository implements Repositorio<Integer, Usuario> {
 
         return usuarioList;
     }
+
+
+    public Usuario pegar(Integer id) throws BancoDeDadosException {
+        Connection conn = null;
+        Usuario usuario = new Usuario();
+
+        try {
+            conn = ConexaoBancoDeDados.getConnection();
+            String sql = "SELECT * FROM USUARIO WHERE id_usuario = ?";
+
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, id);
+
+            ResultSet res = stmt.executeQuery();
+
+            usuario.setId(res.getInt("id_usuario"));
+            usuario.setNome(res.getString("nome"));
+            usuario.setIdade(res.getInt("idade"));
+            usuario.setEmail(res.getString("email"));
+            usuario.setSenha(res.getString("senha"));
+            if (res.getString("tipo_usuario").equalsIgnoreCase("administrador")) {
+                usuario.setTipoUsuario(TipoUsuario.ADMINISTRADOR);
+
+            }else {
+                usuario.setTipoUsuario(TipoUsuario.CLIENTE);
+            }
+
+            System.out.println("Pegar Usuário: " + res.getInt("id_usuario"));
+
+        } catch (SQLException e) {
+            throw new BancoDeDadosException(e.getCause());
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return usuario;
+    }
 }
