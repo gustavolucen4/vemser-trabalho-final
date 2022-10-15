@@ -1,46 +1,45 @@
 package com.dbc.view;
 
 import com.dbc.enums.TipoUsuario;
-import com.dbc.model.*;
+import com.dbc.model.Usuario;
 import com.dbc.service.AssistidosService;
 import com.dbc.service.AvaliacaoService;
 import com.dbc.service.ItemService;
 import com.dbc.service.UsuarioService;
+import com.dbc.view.metodosmain.interacao.Login;
 
+import java.awt.*;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        AvaliacaoService avaliacaoService = new AvaliacaoService();
-        UsuarioService usuarioService = new UsuarioService();
+        Locale.setDefault(Locale.US);
         Scanner scanner = new Scanner(System.in);
 
-        Usuario usuario = new Usuario();
-        usuario.setNome("Mario");
-        usuario.setEmail("Mario@hotmail.com");
-        usuario.setTipoUsuario(TipoUsuario.ADMINISTRADOR);
-        usuario.setSenha("1234");
-        usuario.setIdade(50);
+        ItemService itemService = new ItemService();
+        UsuarioService usuarioService = new UsuarioService();
+        AssistidosService assistidosService = new AssistidosService();
+        AvaliacaoService avaliacaoService = new AvaliacaoService();
 
-        Usuario usuario2 = new Usuario();
-        usuario2.setNome("Iori");
-        usuario2.setTipoUsuario(TipoUsuario.CLIENTE);
-        usuario2.setEmail("Iori@hotmail.com");
-        usuario2.setSenha("2222");
-        usuario2.setIdade(23);
+        Usuario usuarioLogado;
+
+        int fluxo = 0;
+
+        while (fluxo != 9) {
+            //Metodo login usuario/adim
+            usuarioLogado = Login.login(usuarioManipulacao, scanner);
+            System.out.println(usuarioLogado.getTipoUsuario().getDescricao());
 
 
-      //    usuarioService.adicionarUsuario(usuario2);
-
-       // usuarioService.removerUsuario(13);
-
-        //  usuarioService.editarUsuario(9,usuario2);
-
-       //usuarioService.listarUsuarios();
-
-        //usuarioService.pegarUsuario(1);
-
-        //avaliacaoService.adicionarAvaliacao(new Avaliacao(9.5 ,"Triste"), 1, 2);
-        //avaliacaoService.editarAvaliacao(new Avaliacao(9.0, "Muito bom para chorar."), 1, 2);
+            if (usuarioLogado.getTipoUsuario().getDescricao().equals(TipoUsuario.CLIENTE.getDescricao())) {
+                //Menu do Cliente
+                Menu.menuCliente(assistidosManipulacao, itemManipulacao, avaliacaoManipulacao, usuarioLogado, scanner);
+            } else {
+                //Menu do Admin
+                Menu.menuAdmin(usuarioManipulacao, itemManipulacao, avaliacaoManipulacao, usuarioLogado, scanner);
+            }
+        }
+    }
     }
 }
