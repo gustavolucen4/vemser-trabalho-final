@@ -67,6 +67,16 @@ CREATE TABLE ASSISTIDOS (
   PRIMARY KEY (id_usuario, id_item_entretenimento)
 );
 
+
+CREATE TABLE INDICACAO (
+  id_usuario NUMBER NOT NULL,
+  nome_item VARCHAR2(255) NOT NULL,
+  CONSTRAINT FK_id_usario_indicacao FOREIGN KEY ( id_usuario ) REFERENCES USUARIO( id_usuario ),
+  PRIMARY KEY (id_usuario, nome_item)
+);
+
+
+
 --filmes
 
 INSERT INTO ITEM_ENTRETENIMENTO(id_item_entretenimento , nome, tipo, genero, sinopse, ano_lancamento, classificacao, plataforma, duracao, temporadas, episodios)
@@ -113,6 +123,11 @@ SELECT * FROM AVALIACAO;
 
 SELECT * FROM ASSISTIDOS;
 
+SELECT * FROM INDICACAO;
+
 SELECT * FROM ASSISTIDOS a 
 INNER JOIN ITEM_ENTRETENIMENTO ie ON (ie.id_item_entretenimento = a.id_item_entretenimento)
 WHERE id_usuario = 1;
+
+SELECT AVG(nota) AS media FROM AVALIACAO 
+WHERE id_item_entretenimento = 2;
