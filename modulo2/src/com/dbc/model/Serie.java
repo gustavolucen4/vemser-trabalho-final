@@ -30,21 +30,21 @@ public class Serie extends ItemEntretenimento {
     }
 
     //GETTERS AND SETTERS
-    public Integer getTemporadas() {
-        return temporadas;
-    }
-
-    public void setTemporadas(Integer temporadas) {
-        this.temporadas = temporadas;
-    }
-
-    public Integer getEpisodios() {
-        return episodios;
-    }
-
-    public void setEpisodios(Integer episodios) {
-        this.episodios = episodios;
-    }
+//    public Integer getTemporadas() {
+//        return temporadas;
+//    }
+//
+//    public void setTemporadas(Integer temporadas) {
+//        this.temporadas = temporadas;
+//    }
+//
+//    public Integer getEpisodios() {
+//        return episodios;
+//    }
+//
+//    public void setEpisodios(Integer episodios) {
+//        this.episodios = episodios;
+//    }
 
 
 }

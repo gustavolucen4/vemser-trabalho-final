@@ -34,7 +34,7 @@
 //
 //    }
 //
-//    public static void atualizarSerie(Integer index,ItemManipulacao itemManipulacao, Scanner scanner){
+//    public static void atualizarSerie(Integer index, ItemManipulacao itemManipulacao, Scanner scanner) {
 //
 //        Filme filme = new Filme();
 //        System.out.println("Nome do filme: ");
@@ -151,3 +151,8 @@
 //    }
 //
 //}
+//        itemManipulacao.editarItemEntretenimento(index, filme);
+//
+//    }
+
+

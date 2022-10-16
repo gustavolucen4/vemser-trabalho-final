@@ -31,12 +31,6 @@ public class Filme extends ItemEntretenimento {
     }
 
     //GETTER AND SETTER
-    public String getDuracao() {
-        return duracao;
-    }
 
-    public void setDuracao(String duracao) {
-        this.duracao = duracao;
-    }
 
 }
