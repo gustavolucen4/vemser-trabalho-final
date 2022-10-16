@@ -245,6 +245,7 @@ public class Menus {
 
                 switch (listaSelecionada) {
                     case 1 -> {
+                        scanner.nextLine();
                         Buscar.buscarItens(itemService, filtro, scanner);
                     }
                     case 2 -> {
