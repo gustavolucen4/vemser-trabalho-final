@@ -2,7 +2,6 @@ package com.dbc.view;
 
 import com.dbc.enums.TipoUsuario;
 import com.dbc.model.Usuario;
-import com.dbc.repository.IndicacaoRepository;
 import com.dbc.service.*;
 import com.dbc.view.metodosmain.Menus;
 import com.dbc.view.metodosmain.interacao.Login;
@@ -32,6 +31,8 @@ public class Main {
                 scanner.nextLine();
 
                 if (stop == 2){
+                    System.out.println("\u001B[34m" + "Obrigado por utilizar nosso sistema!!" + "\u001B[0m");
+                    System.exit(0);
                     break;
                 }
 
@@ -56,6 +57,5 @@ public class Main {
         }
 
         scanner.close();
-        System.out.println("\u001B[34m" + "Obrigado por utilizar nosso sistema!!" + "\u001B[0m");
     }
 }
