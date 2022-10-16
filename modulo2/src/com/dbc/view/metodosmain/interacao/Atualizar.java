@@ -1,5 +1,10 @@
 package com.dbc.view.metodosmain.interacao;
 
+import com.dbc.model.Avaliacao;
+import com.dbc.model.ItemEntretenimento;
+import com.dbc.model.Usuario;
+import com.dbc.service.AvaliacaoService;
+import com.dbc.service.ItemService;
 import entidades.*;
 import interfacesenum.TipoUsuario;
 import manipulacao.AvaliacaoManipulacao;
@@ -11,51 +16,51 @@ import java.util.Scanner;
 
 public class Atualizar {
 
-    public static void atualizarFilme(Integer index,ItemManipulacao itemManipulacao, Scanner scanner){
+    public static void atualizarFilme(Integer index, ItemService itemService, Scanner scanner) {
 
-        Filme filme = new Filme();
+        ItemEntretenimento itemEntretenimento = new ItemEntretenimento();
         System.out.println("Nome do filme: ");
-        filme.setNome(scanner.nextLine());
+        itemEntretenimento.setNome(scanner.nextLine());
         System.out.println("Genero do filme:");
-        filme.setGenero(scanner.nextLine());
+        itemEntretenimento.setGenero(scanner.nextLine());
         System.out.println("Sinopse:");
-        filme.setSinopse(scanner.nextLine());
+        itemEntretenimento.setSinopse(scanner.nextLine());
         System.out.println("Classificação:");
-        filme.setClassificacao(scanner.nextInt());
+        itemEntretenimento.setClassificacao(scanner.nextInt());
         scanner.nextLine();
         System.out.println("Ano de lançamento:");
-        filme.setAnoLancamento(scanner.nextLine());
+        itemEntretenimento.setAnoLancamento(scanner.nextLine());
         System.out.println("Plataforma de streaming:");
-        filme.setPlataforma(scanner.nextLine());
-        System.out.println("Duração fo filme (Minutos):");
-        filme.setDuracao(scanner.nextLine());
+        itemEntretenimento.setPlataforma(scanner.nextLine());
+        System.out.println("Duração do filme (Minutos):");
+        itemEntretenimento.setDuracao(scanner.nextLine());
 
-        itemManipulacao.editarItemEntretenimento(index ,filme);
+        itemService.editarItemEntretenimento(index, itemEntretenimento);
 
     }
 
-    public static void atualizarSerie(Integer index,ItemManipulacao itemManipulacao, Scanner scanner){
+//    public static void atualizarSerie(Integer index, ItemManipulacao itemManipulacao, Scanner scanner) {
+//
+//        Filme filme = new Filme();
+//        System.out.println("Nome do filme: ");
+//        filme.setNome(scanner.nextLine());
+//        System.out.println("Genero do filme:");
+//        filme.setGenero(scanner.nextLine());
+//        System.out.println("Sinopse:");
+//        filme.setSinopse(scanner.nextLine());
+//        System.out.println("Ano de lançamento:");
+//        filme.setClassificacao(scanner.nextInt());
+//        scanner.nextLine();
+//        System.out.println("Plataforma de streaming:");
+//        filme.setPlataforma(scanner.nextLine());
+//        System.out.println("Duração fo filme (Minutos):");
+//        filme.setDuracao(scanner.nextLine());
+//
+//        itemManipulacao.editarItemEntretenimento(index, filme);
+//
+//    }
 
-        Filme filme = new Filme();
-        System.out.println("Nome do filme: ");
-        filme.setNome(scanner.nextLine());
-        System.out.println("Genero do filme:");
-        filme.setGenero(scanner.nextLine());
-        System.out.println("Sinopse:");
-        filme.setSinopse(scanner.nextLine());
-        System.out.println("Ano de lançamento:");
-        filme.setClassificacao(scanner.nextInt());
-        scanner.nextLine();
-        System.out.println("Plataforma de streaming:");
-        filme.setPlataforma(scanner.nextLine());
-        System.out.println("Duração fo filme (Minutos):");
-        filme.setDuracao(scanner.nextLine());
-
-        itemManipulacao.editarItemEntretenimento(index ,filme);
-
-    }
-
-    public static void atualizarAvaliacao(ItemManipulacao itemManipulacao, AvaliacaoManipulacao avaliacaoManipulacao, Usuario usuario, Integer index, Scanner scanner){
+    public static void atualizarAvaliacao(ItemService itemService, AvaliacaoService avaliacaoService, Usuario usuario, Integer index, Scanner scanner){
         Avaliacao procurarAvaliacao = avaliacaoManipulacao.getAvaliacoes().get(index);
 
         if(procurarAvaliacao.getUsuario().getEmail().equals(usuario.getEmail())){
@@ -72,27 +77,27 @@ public class Atualizar {
         }
     }
 
-    public static void tornarClienteAdmin(UsuarioManipulacao usuarioManipulacao, String emailCliente, Usuario admin){
+    public static void tornarClienteAdmin(UsuarioManipulacao usuarioManipulacao, String emailCliente, Usuario admin) {
         Optional<Usuario> usuario = usuarioManipulacao.getUsuariosLista().stream()
                 .filter(user -> user.getEmail().equalsIgnoreCase(emailCliente))
                 .findFirst();
 
-        if (usuario.isPresent()){
+        if (usuario.isPresent()) {
             admin.setUsuarioAdmin(usuario.get());
-            System.out.println(usuario.get().getEmail()+" agora é um administrador!");
-        }else {
+            System.out.println(usuario.get().getEmail() + " agora é um administrador!");
+        } else {
             System.out.println("Usuario não encontrado");
         }
     }
 
 
-    public static void atualizarQualquerUsuario(UsuarioManipulacao usuarioManipulacao, String emailCliente, Usuario admin, Scanner scanner){
+    public static void atualizarQualquerUsuario(UsuarioManipulacao usuarioManipulacao, String emailCliente, Usuario admin, Scanner scanner) {
 
         Optional<Usuario> usuario = usuarioManipulacao.getUsuariosLista().stream()
                 .filter(user -> user.getEmail().equalsIgnoreCase(emailCliente))
                 .findFirst();
 
-        if (admin.getTipoUsuario().equals(TipoUsuario.ADIMINISTRADOR) && usuario.isPresent()){
+        if (admin.getTipoUsuario().equals(TipoUsuario.ADIMINISTRADOR) && usuario.isPresent()) {
 
             Usuario usuarioEntrada = usuario.get();
 
@@ -116,14 +121,14 @@ public class Atualizar {
 
             usuarioManipulacao.editarUsuario(usuarioEntrada.getId(), usuarioEntrada);
 
-        }else {
+        } else {
             System.out.println("Usuario não encontrado");
         }
     }
 
-    public static void atualizarUsuario(UsuarioManipulacao usuarioManipulacao, Usuario usuarioLogado, Scanner scanner){
+    public static void atualizarUsuario(UsuarioManipulacao usuarioManipulacao, Usuario usuarioLogado, Scanner scanner) {
 
-        if (usuarioLogado != null){
+        if (usuarioLogado != null) {
             Usuario usuarioEntrada = usuarioLogado;
 
             System.out.println("Preencha os seguintes dados: ");
@@ -145,7 +150,7 @@ public class Atualizar {
             usuarioEntrada.setSenha(senha);
 
             usuarioManipulacao.editarUsuario(usuarioLogado.getIdade(), usuarioEntrada);
-        }else {
+        } else {
             System.out.println("Usuario não encontrado");
         }
     }

@@ -1,5 +1,8 @@
 package com.dbc.view.metodosmain.interacao;
 
+import com.dbc.model.ItemEntretenimento;
+import com.dbc.model.Usuario;
+import com.dbc.service.ItemService;
 import entidades.*;
 import manipulacao.AvaliacaoManipulacao;
 import manipulacao.ItemManipulacao;
@@ -7,49 +10,51 @@ import manipulacao.ItemManipulacao;
 import java.util.Scanner;
 
 public class Criar {
-    public static void criarFilme(ItemManipulacao itemManipulacao, Scanner scanner){
+    public static void criarFilme(ItemService itemService, Scanner scanner){
 
-            Filme filme = new Filme();
-            System.out.println("Nome do filme: ");
-            filme.setNome(scanner.nextLine());
-            System.out.println("Genero do filme:");
-            filme.setGenero(scanner.nextLine());
-            System.out.println("Sinopse:");
-            filme.setSinopse(scanner.nextLine());
-            System.out.println("Ano de lançamento:");
-            filme.setAnoLancamento(scanner.nextLine());
-            System.out.println("Classificação");
-            filme.setClassificacao(scanner.nextInt());
-            scanner.nextLine();
-            System.out.println("Plataforma de streaming:");
-            filme.setPlataforma(scanner.nextLine());
-            System.out.println("Duração fo filme (Minutos):");
-            filme.setDuracao(scanner.nextLine());
+        ItemEntretenimento itemEntretenimento = new ItemEntretenimento();
+        System.out.println("Nome do filme: ");
+        itemEntretenimento.setNome(scanner.nextLine());
+        System.out.println("Genero do filme:");
+        itemEntretenimento.setGenero(scanner.nextLine());
+        System.out.println("Sinopse:");
+        itemEntretenimento.setSinopse(scanner.nextLine());
+        System.out.println("Classificação:");
+        itemEntretenimento.setClassificacao(scanner.nextInt());
+        scanner.nextLine();
+        System.out.println("Ano de lançamento:");
+        itemEntretenimento.setAnoLancamento(scanner.nextLine());
+        System.out.println("Plataforma de streaming:");
+        itemEntretenimento.setPlataforma(scanner.nextLine());
+        System.out.println("Duração do filme (Minutos):");
+        itemEntretenimento.setDuracao(scanner.nextLine());
 
-            itemManipulacao.criarItemEntretenimento(filme);
+        itemService.adicionarItemEntretenimento(itemEntretenimento);
 
     }
 
-    public static void criarSerie(ItemManipulacao itemManipulacao, Scanner scanner){
+    public static void criarSerie(ItemService itemService, Scanner scanner){
 
-        Serie serie = new Serie();
+        ItemEntretenimento itemEntretenimento = new ItemEntretenimento();
         System.out.println("Nome do série: ");
-        serie.setNome(scanner.nextLine());
+        itemEntretenimento.setNome(scanner.nextLine());
         System.out.println("Genero do série:");
-        serie.setGenero(scanner.nextLine());
+        itemEntretenimento.setGenero(scanner.nextLine());
         System.out.println("Sinopse:");
-        serie.setSinopse(scanner.nextLine());
+        itemEntretenimento.setSinopse(scanner.nextLine());
         System.out.println("Ano de lançamento:");
-        serie.setClassificacao(scanner.nextInt());
+        itemEntretenimento.setAnoLancamento(scanner.next());
         scanner.nextLine();
         System.out.println("Plataforma de streaming:");
-        serie.setPlataforma(scanner.nextLine());
+        itemEntretenimento.setPlataforma(scanner.nextLine());
         System.out.println("Número de temporadas:");
-        serie.setTemporadas(scanner.nextInt());
+        itemEntretenimento.setTemporadas(scanner.nextInt());
+        scanner.nextLine();
         System.out.println("Total de episódios:");
-        serie.setEpisodios(scanner.nextInt());
+        itemEntretenimento.setEpisodios(scanner.nextInt());
+        scanner.nextLine();
 
-        itemManipulacao.criarItemEntretenimento(serie);
+        itemService.adicionarItemEntretenimento(itemEntretenimento);
     }
 
     public static void criarAvaliacao(ItemManipulacao itemManipulacao, AvaliacaoManipulacao avaliacaoManipulacao, Usuario usuario, Integer index, Scanner scanner){

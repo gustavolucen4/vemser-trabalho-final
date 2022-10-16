@@ -16,6 +16,9 @@ public class ItemEntretenimento implements Impressao {
     private Integer classificacao;
     private String plataforma;
     private List <Avaliacao> avaliacoes;
+    private String duracao;
+    private Integer temporadas;
+    private Integer episodios;
 
 
     //Construtores
@@ -116,6 +119,30 @@ public class ItemEntretenimento implements Impressao {
 
     public List<Avaliacao> getAvaliacoes() {
         return avaliacoes;
+    }
+
+    public String getDuracao() {
+        return duracao;
+    }
+
+    public void setDuracao(String duracao) {
+        this.duracao = duracao;
+    }
+
+    public Integer getTemporadas() {
+        return temporadas;
+    }
+
+    public void setTemporadas(Integer temporadas) {
+        this.temporadas = temporadas;
+    }
+
+    public Integer getEpisodios() {
+        return episodios;
+    }
+
+    public void setEpisodios(Integer episodios) {
+        this.episodios = episodios;
     }
 
     @Override
