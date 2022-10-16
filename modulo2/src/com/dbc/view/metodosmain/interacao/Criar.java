@@ -23,7 +23,7 @@ public class Criar {
             scanner.nextLine();
             System.out.println("Plataforma de streaming:");
             filme.setPlataforma(scanner.nextLine());
-            System.out.println("Duração fo filme (Minutos):");
+            System.out.println("Duração do filme (Minutos):");
             filme.setDuracao(scanner.nextLine());
 
             itemService.adicionarItemEntretenimento(filme);
