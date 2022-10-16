@@ -20,11 +20,13 @@ public  class Usuario implements Impressao {
         this.idade = idade;
         this.email = email;
         this.senha = senha;
+        tipoUsuario = TipoUsuario.CLIENTE;
     }
 
     //GETTERS AND SETTERS
 
     public Usuario() {
+        tipoUsuario = TipoUsuario.CLIENTE;
     }
 
     public Integer getId() {

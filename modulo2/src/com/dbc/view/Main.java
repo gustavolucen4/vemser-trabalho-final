@@ -22,24 +22,31 @@ public class Main {
         AssistidosService assistidosService = new AssistidosService();
         AvaliacaoService avaliacaoService = new AvaliacaoService();
 
-        Usuario usuarioLogado;
+        Usuario usuarioLogado = null;
 
-        int fluxo = 0;
-
-        while (fluxo != 9) {
+        while (true) {
             //Metodo login usuario/adim
-            usuarioLogado = Login.login(usuarioManipulacao, scanner);
+            System.out.println("Entrar[1] Sair[2] !!");
+            int stop = scanner.nextInt();
+
+            if (stop == 2){
+                break;
+            }
+
+            usuarioLogado = Login.login(usuarioService, scanner);
             System.out.println(usuarioLogado.getTipoUsuario().getDescricao());
 
 
             if (usuarioLogado.getTipoUsuario().getDescricao().equals(TipoUsuario.CLIENTE.getDescricao())) {
                 //Menu do Cliente
-                Menu.menuCliente(assistidosManipulacao, itemManipulacao, avaliacaoManipulacao, usuarioLogado, scanner);
+                Menu.menuCliente(assistidosService, itemService, avaliacaoService, usuarioLogado, scanner);
+                System.out.println("cliente");
             } else {
                 //Menu do Admin
-                Menu.menuAdmin(usuarioManipulacao, itemManipulacao, avaliacaoManipulacao, usuarioLogado, scanner);
+                //Menu.menuAdmin(usuarioManipulacao, itemManipulacao, avaliacaoManipulacao, usuarioLogado, scanner);
             }
         }
-    }
+
+        System.out.println("Obrigado por utilizar nosso sistema!!");
     }
 }

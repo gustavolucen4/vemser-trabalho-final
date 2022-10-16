@@ -220,4 +220,48 @@ public class UsuarioRepository implements Repositorio<Integer, Usuario> {
         }
         return usuario;
     }
+
+    public Usuario pegarLogin(Usuario usuarioLogin) throws BancoDeDadosException {
+        Connection conn = null;
+        Usuario usuario = new Usuario();
+
+        try {
+            conn = ConexaoBancoDeDados.getConnection();
+            String sql = "SELECT * FROM USUARIO WHERE email = ? AND senha = ?";
+
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, usuarioLogin.getEmail());
+            stmt.setString(2, usuarioLogin.getSenha());
+
+            ResultSet res = stmt.executeQuery();
+
+            while (res.next()){
+                usuario.setId(res.getInt("id_usuario"));
+                usuario.setNome(res.getString("nome"));
+                usuario.setIdade(res.getInt("idade"));
+                usuario.setEmail(res.getString("email"));
+                usuario.setSenha(res.getString("senha"));
+                if (res.getString("tipo_usuario").equalsIgnoreCase("administrador")) {
+                    usuario.setTipoUsuario(TipoUsuario.ADMINISTRADOR);
+
+                }else {
+                    usuario.setTipoUsuario(TipoUsuario.CLIENTE);
+                }
+            }
+
+            System.out.println("Usuário consultado!!");
+
+        } catch (SQLException e) {
+            throw new BancoDeDadosException(e.getCause());
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return usuario;
+    }
 }

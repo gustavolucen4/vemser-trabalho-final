@@ -1,9 +1,8 @@
 package com.dbc.view.metodosmain.interacao;
 
+import com.dbc.model.Cliente;
+import com.dbc.model.Usuario;
 import com.dbc.service.UsuarioService;
-import entidades.Cliente;
-import entidades.Usuario;
-import manipulacao.UsuarioManipulacao;
 
 import java.util.Optional;
 import java.util.Scanner;
@@ -24,20 +23,15 @@ public class Login {
                 if (opcaoEntrada == 1) {
                     System.out.println("**LOGIN** ");
                     System.out.println("Email:");
-                    String loginUsuario = scanner.nextLine();
-                    usuarioEntrada.setEmail(loginUsuario);
+                    usuarioEntrada.setEmail(scanner.nextLine());
                     System.out.println("Senha:");
-                    String senhaUsuario = scanner.nextLine();
-                    usuarioEntrada.setSenha(senhaUsuario);
+                    usuarioEntrada.setSenha(scanner.nextLine());
 
-                    Optional<Usuario> retornoUser = usuarioManipulacao.getUsuariosLista().stream()
-                            .filter(login -> (login.getEmail().equals(usuarioEntrada.getEmail()) &&
-                                    (login.getSenha().equals(usuarioEntrada.getSenha()))))
-                            .findFirst();
+                    Usuario usuarioEncontrado = usuarioService.verificarUsuario(usuarioEntrada);
 
-                    if (!retornoUser.isEmpty()) {
+                    if (usuarioEncontrado.getEmail() != null && usuarioEncontrado.getSenha() != null) {
                         System.out.println("\n"+usuarioEntrada.getEmail() + " Logado com sucesso!");
-                        resultadoUser = retornoUser.get();
+                        resultadoUser = usuarioEncontrado;
                         break;
                     }else {
                         System.out.println("\nUsuário não encontrado. Favor realizar Cadastro.");
@@ -64,8 +58,8 @@ public class Login {
                     String senha = scanner.nextLine();
                     usuarioEntrada.setSenha(senha);
 
-                    usuarioManipulacao.criarUsuario(usuarioEntrada);
-                    resultadoUser = usuarioEntrada;
+                    usuarioService.adicionarUsuario(usuarioEntrada);
+                    resultadoUser = usuarioService.verificarUsuario(usuarioEntrada);
                     break;
 
                 } else {

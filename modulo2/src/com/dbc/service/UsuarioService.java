@@ -60,4 +60,15 @@ public class UsuarioService {
             ex.printStackTrace();
         }
     }
+
+    public Usuario verificarUsuario(Usuario usuario){
+        try{
+            return usuarioRepository.pegarLogin(usuario);
+
+        }catch (BancoDeDadosException ex){
+            System.out.println("ERRO: "+ex.getMessage());
+            ex.printStackTrace();
+        }
+        return null;
+    }
 }

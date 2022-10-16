@@ -1,11 +1,11 @@
 package com.dbc.view.metodosmain;
 
-import entidades.*;
-import manipulacao.AssistidosManipulacao;
-import manipulacao.AvaliacaoManipulacao;
-import manipulacao.ItemManipulacao;
-import manipulacao.UsuarioManipulacao;
-import metodosmain.interacao.*;
+import com.dbc.model.Filtro;
+import com.dbc.model.Usuario;
+import com.dbc.service.AssistidosService;
+import com.dbc.service.AvaliacaoService;
+import com.dbc.service.ItemService;
+import com.dbc.view.metodosmain.interacao.Buscar;
 
 import java.util.Scanner;
 
@@ -211,7 +211,7 @@ public class Menu {
 
 
     //
-    public static void menuCliente(AssistidosManipulacao assistidosManipulacao, ItemManipulacao itemManipulacao, AvaliacaoManipulacao avaliacaoManipulacao, Usuario usuarioLogado, Scanner scanner){
+    public static void menuCliente(AssistidosService assistidosService, ItemService itemService, AvaliacaoService avaliacaoService, Usuario usuarioLogado, Scanner scanner){
         Filtro filtro = new Filtro();
 
         int listaSelecionada = 0;
@@ -232,7 +232,8 @@ public class Menu {
 
             switch (listaSelecionada) {
                 case 1 -> {
-                    Buscar.buscarItens(itemManipulacao, filtro, scanner);
+                    itemService.filtrarItemEntretenimento(filtro);
+                    Buscar.buscarItens(itemService, filtro, scanner);
                 }
                 case 2 -> {
                     System.out.println("[1] Listar itens assistidos");

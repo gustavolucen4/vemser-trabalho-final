@@ -1,14 +1,14 @@
 package com.dbc.view.metodosmain.interacao;
 
-import entidades.Filtro;
-import entidades.ItemEntretenimento;
-import manipulacao.ItemManipulacao;
+import com.dbc.model.Filtro;
+import com.dbc.model.ItemEntretenimento;
+import com.dbc.service.ItemService;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class Buscar {
-    public static void buscarItens(ItemManipulacao itemManipulacao, Filtro filtro, Scanner scanner){
+    public static void buscarItens(ItemService itemService, Filtro filtro, Scanner scanner){
         while (true) {
             System.out.println("O que você deseja assistir hoje? \nFilme ou Série.");
             filtro.setTipo(scanner.nextLine());
@@ -18,11 +18,7 @@ public class Buscar {
             filtro.setClassificacao(scanner.nextInt());
             scanner.nextLine();
 
-            List<ItemEntretenimento> resultado = itemManipulacao.filtrarItemEntretenimento(filtro);
-
-            if (resultado != null){
-                System.out.println("buscando...");
-                resultado.forEach(item -> item.imprimir());
+            if (itemService.filtrarItemEntretenimento(filtro)){
                 break;
             }else{
                 System.out.println("Nenhum item encontrado");
