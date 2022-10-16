@@ -2,10 +2,8 @@ package com.dbc.view;
 
 import com.dbc.enums.TipoUsuario;
 import com.dbc.model.Usuario;
-import com.dbc.service.AssistidosService;
-import com.dbc.service.AvaliacaoService;
-import com.dbc.service.ItemService;
-import com.dbc.service.UsuarioService;
+import com.dbc.repository.IndicacaoRepository;
+import com.dbc.service.*;
 import com.dbc.view.metodosmain.Menus;
 import com.dbc.view.metodosmain.interacao.Login;
 
@@ -22,6 +20,7 @@ public class Main {
         UsuarioService usuarioService = new UsuarioService();
         AssistidosService assistidosService = new AssistidosService();
         AvaliacaoService avaliacaoService = new AvaliacaoService();
+        IndicacaoService indicacaoService = new IndicacaoService();
 
         Usuario usuarioLogado = null;
 
@@ -42,7 +41,7 @@ public class Main {
 
                 if (usuarioLogado.getTipoUsuario().getDescricao().equals(TipoUsuario.CLIENTE.getDescricao())) {
                     //Menu do Cliente
-                    Menus.menuCliente(assistidosService, itemService, avaliacaoService, usuarioLogado, scanner);
+                    Menus.menuCliente(assistidosService, itemService, avaliacaoService, indicacaoService, usuarioLogado, scanner);
                 } else {
                     //Menu do Admin
                     Menus.menuAdmin(usuarioService, itemService, avaliacaoService, usuarioLogado, scanner);

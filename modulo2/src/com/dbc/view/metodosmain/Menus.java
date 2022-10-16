@@ -2,10 +2,7 @@ package com.dbc.view.metodosmain;
 
 import com.dbc.model.Filtro;
 import com.dbc.model.Usuario;
-import com.dbc.service.AssistidosService;
-import com.dbc.service.AvaliacaoService;
-import com.dbc.service.ItemService;
-import com.dbc.service.UsuarioService;
+import com.dbc.service.*;
 import com.dbc.view.metodosmain.interacao.Atualizar;
 import com.dbc.view.metodosmain.interacao.Buscar;
 import com.dbc.view.metodosmain.interacao.Criar;
@@ -34,7 +31,6 @@ public class Menus {
                 System.out.println("[9] Voltar.");
 
                 listaSelecionada = scanner.nextInt();
-                //scanner.nextLine();
 
                 switch (listaSelecionada){
                     case 1 -> {
@@ -227,7 +223,7 @@ public class Menus {
 
 
     //
-    public static void menuCliente(AssistidosService assistidosService, ItemService itemService, AvaliacaoService avaliacaoService, Usuario usuarioLogado, Scanner scanner){
+    public static void menuCliente(AssistidosService assistidosService, ItemService itemService, AvaliacaoService avaliacaoService, IndicacaoService indicacaoService, Usuario usuarioLogado, Scanner scanner){
         Filtro filtro = new Filtro();
 
         int listaSelecionada = 0;
@@ -239,14 +235,13 @@ public class Menus {
                 int metodoSelecionado = 0;
 
                 System.out.println("**Menu Cliente**");
-                System.out.println("[1] Buscar filmes e series");
+                System.out.println("[1] Buscar filmes e séries");
                 System.out.println("[2] Itens assistidos");
                 System.out.println("[3] Avaliações");
+                System.out.println("[4] Indicar Filme/série");
                 System.out.println("[9] Voltar!");
 
-
                 listaSelecionada = scanner.nextInt();
-                //scanner.nextLine();
 
                 switch (listaSelecionada) {
                     case 1 -> {
@@ -297,7 +292,7 @@ public class Menus {
                                 avaliacaoService.listarAvaliacoesUsuario(usuarioLogado.getId());
                             }
                             case 2 -> {
-                                System.out.println("Criar Avaliação");
+                                System.out.println("Criar Avaliação !");
                                 //Criar Avaliação
                                 itemService.listarItens();
                                 System.out.println("Digite o index do filme que deseja avaliar:");
@@ -306,7 +301,7 @@ public class Menus {
                             }
                             case 3 -> {
                                 avaliacaoService.listarAvaliacoesUsuario(usuarioLogado.getId());
-                                System.out.println("Atualizar avaliação");
+                                System.out.println("Atualizar avaliação !");
                                 //Atualizar avaliação
                                 System.out.println("Digite o id/index que deseja atualizar");
                                 Integer index = scanner.nextInt();
@@ -328,6 +323,12 @@ public class Menus {
                                 System.err.println("ID não localizado.");
                             }
                         }
+                    }case 4 -> {
+                        scanner.nextLine();
+                        System.out.println("Indicação Filmes/Séries");
+                        System.out.println("Digite o nome do filme/série que deseja indicar: ");
+                        String nomeItem = scanner.nextLine();
+                        indicacaoService.adcionarIndicacao(usuarioLogado.getId(), nomeItem);
                     }
                     case 9 -> {
                         System.out.println("<---");
