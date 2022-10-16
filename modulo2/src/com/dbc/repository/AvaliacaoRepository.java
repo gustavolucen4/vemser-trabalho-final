@@ -37,7 +37,6 @@ public class AvaliacaoRepository {
             stmt.setString(4, avaliacao.getComentario());
 
             int res = stmt.executeUpdate();
-            System.out.println("Avaliaçao adcionada!! - " + res);
             return avaliacao;
         } catch (SQLException e) {
             throw new BancoDeDadosException(e.getCause());

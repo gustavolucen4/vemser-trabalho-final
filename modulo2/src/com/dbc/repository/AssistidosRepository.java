@@ -112,7 +112,6 @@ public class AssistidosRepository implements Interacao {
 
             // Executa-se a consulta
             int res = stmt.executeUpdate();
-            System.out.println("removerItemPorId.res=" + res);
 
             return res > 0;
         } catch (SQLException e) {

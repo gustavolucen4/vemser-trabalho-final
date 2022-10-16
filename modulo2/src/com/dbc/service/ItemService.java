@@ -48,7 +48,7 @@ public class ItemService {
     public void removerItemEntretenimento(Integer id) {
         try{
             boolean conseguiuRemover = itemRepository.remover(id);
-            System.out.println("Item removido? " + conseguiuRemover + "| com id=" + id);
+            System.out.println("Item com id "+id+" removido? " + conseguiuRemover);
         }catch (BancoDeDadosException ex){
             System.out.println("ERRO: "+ex.getMessage());
         }

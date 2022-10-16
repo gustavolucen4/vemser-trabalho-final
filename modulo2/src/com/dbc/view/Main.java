@@ -9,6 +9,7 @@ import com.dbc.service.UsuarioService;
 import com.dbc.view.metodosmain.Menus;
 import com.dbc.view.metodosmain.interacao.Login;
 
+import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -25,28 +26,37 @@ public class Main {
         Usuario usuarioLogado = null;
 
         while (true) {
-            //Metodo login usuario/adim
-            System.out.println("Entrar[1] Sair[2] !!");
-            int stop = scanner.nextInt();
+            try{
+                //Metodo login usuario/adim
+                System.out.println("Entrar[1] Sair[2] !!");
+                int stop = scanner.nextInt();
+                scanner.nextLine();
 
-            if (stop == 2){
-                break;
-            }
+                if (stop == 2){
+                    break;
+                }
 
-            usuarioLogado = Login.login(usuarioService, scanner);
-            System.out.println(usuarioLogado.getTipoUsuario().getDescricao());
+                usuarioLogado = Login.login(usuarioService, scanner);
+                System.out.println(usuarioLogado.getTipoUsuario().getDescricao());
 
 
-            if (usuarioLogado.getTipoUsuario().getDescricao().equals(TipoUsuario.CLIENTE.getDescricao())) {
-                //Menu do Cliente
-                Menus.menuCliente(assistidosService, itemService, avaliacaoService, usuarioLogado, scanner);
-                System.out.println("cliente");
-            } else {
-                //Menu do Admin
-                Menus.menuAdmin(usuarioService, itemService, avaliacaoService, usuarioLogado, scanner);
+                if (usuarioLogado.getTipoUsuario().getDescricao().equals(TipoUsuario.CLIENTE.getDescricao())) {
+                    //Menu do Cliente
+                    Menus.menuCliente(assistidosService, itemService, avaliacaoService, usuarioLogado, scanner);
+                } else {
+                    //Menu do Admin
+                    Menus.menuAdmin(usuarioService, itemService, avaliacaoService, usuarioLogado, scanner);
+                }
+            }catch (InputMismatchException ex){
+                System.err.println("Por favor, digite um valor válido!!");
+            }catch (NullPointerException ex){
+                System.out.println(ex.getMessage());
+            }finally {
+                scanner.nextLine();
             }
         }
 
-        System.out.println("Obrigado por utilizar nosso sistema!!");
+        scanner.close();
+        System.out.println("\u001B[34m" + "Obrigado por utilizar nosso sistema!!" + "\u001B[0m");
     }
 }

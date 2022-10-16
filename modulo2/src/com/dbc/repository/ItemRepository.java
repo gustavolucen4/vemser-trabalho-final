@@ -81,7 +81,6 @@ public class ItemRepository implements Repositorio<Integer, ItemEntretenimento> 
 
             // Executa-se a consulta
             int res = stmt.executeUpdate();
-            System.out.println("removerItemPorId.res=" + res);
 
             return res > 0;
         } catch (SQLException e) {
@@ -193,6 +192,11 @@ public class ItemRepository implements Repositorio<Integer, ItemEntretenimento> 
                 item.setAnoLancamento(res.getString("ano_lancamento"));
                 item.setClassificacao(res.getInt("classificacao"));
                 item.setPlataforma(res.getString("plataforma"));
+                if (mediaAvaliacoes(item.getId()) == 0){
+                    item.setMediaAvaliacoes(null);
+                }else {
+                    item.setMediaAvaliacoes(mediaAvaliacoes(item.getId()));
+                }
 
                 itemEntretenimentos.add(item);
             }
@@ -241,6 +245,11 @@ public class ItemRepository implements Repositorio<Integer, ItemEntretenimento> 
                 item.setAnoLancamento(res.getString("ano_lancamento"));
                 item.setClassificacao(res.getInt("classificacao"));
                 item.setPlataforma(res.getString("plataforma"));
+                if (mediaAvaliacoes(item.getId()) == 0){
+                    item.setMediaAvaliacoes(null);
+                }else {
+                    item.setMediaAvaliacoes(mediaAvaliacoes(item.getId()));
+                }
 
                 itemEntretenimentos.add(item);
             }
@@ -267,7 +276,7 @@ public class ItemRepository implements Repositorio<Integer, ItemEntretenimento> 
             con = ConexaoBancoDeDados.getConnection();
 
             StringBuilder sql = new StringBuilder();
-            sql.append("SELECT AVG(nota) as media FROM AVALIACAO \n");
+            sql.append("SELECT AVG(nota) AS media FROM AVALIACAO \n");
             sql.append("WHERE id_item_entretenimento = ? ");
 
             PreparedStatement stmt = con.prepareStatement(sql.toString());
@@ -276,6 +285,7 @@ public class ItemRepository implements Repositorio<Integer, ItemEntretenimento> 
 
             ResultSet res = stmt.executeQuery();
 
+            res.next();
             media = res.getDouble("media");
 
         }catch (SQLException ex){
@@ -314,6 +324,11 @@ public class ItemRepository implements Repositorio<Integer, ItemEntretenimento> 
                 item.setAnoLancamento(res.getString("ano_lancamento"));
                 item.setClassificacao(res.getInt("classificacao"));
                 item.setPlataforma(res.getString("plataforma"));
+                if (mediaAvaliacoes(item.getId()) == 0){
+                    item.setMediaAvaliacoes(null);
+                }else {
+                    item.setMediaAvaliacoes(mediaAvaliacoes(item.getId()));
+                }
             }
 
             System.out.println("Item Pego!");

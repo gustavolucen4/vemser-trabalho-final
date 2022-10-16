@@ -54,7 +54,7 @@ public class UsuarioService {
     public void listarUsuarios() {
         try {
             List<Usuario> listar = usuarioRepository.listar();
-            listar.forEach(System.out::println);
+            listar.forEach(Usuario::imprimir);
         } catch (BancoDeDadosException e) {
             throw new RuntimeException(e.getCause());
         }
@@ -72,6 +72,7 @@ public class UsuarioService {
 
     public Usuario verificarUsuario(Usuario usuario){
         try{
+            System.out.println("Buscando usuário......\n");
             return usuarioRepository.pegarLogin(usuario);
 
         }catch (BancoDeDadosException ex){

@@ -61,7 +61,7 @@ public class Avaliacao implements Impressao {
 
     @Override
     public void imprimir() {
-        System.out.println("-------------------------\n" +
+        System.out.println("\u001B[33m" + "-------------------------\n" +
                 "Avaliacao{" +
                 "Usuario=" + usuario.getEmail() +
                 " Usuario id=" + usuario.getId() +
@@ -70,7 +70,7 @@ public class Avaliacao implements Impressao {
                 ", nota=" + nota +
                 ", comentario='" + comentario + '\'' +
                 '}' +
-                "\n-------------------------");
+                "\n-------------------------" + "\u001B[0m");
     }
 
 }

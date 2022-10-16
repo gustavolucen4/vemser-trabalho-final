@@ -86,23 +86,11 @@ public  class Usuario implements Impressao {
 
     @Override
     public void imprimir() {
-        System.out.println("--------------"
+        System.out.println( "\u001B[34m" + "--------------"
                 + "\nNome: "+getNome()
                 + "\nIdade: "+getIdade()
                 + "\nEmail: "+getEmail()
                 + "\nTipo de usuário: "+this.tipoUsuario.getDescricao()
-                + "\n--------------");
-    }
-
-    @Override
-    public String toString() {
-        return "Usuario{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", idade=" + idade +
-                ", email='" + email + '\'' +
-                ", senha='" + senha + '\'' +
-                ", tipoUsuario=" + tipoUsuario +
-                '}';
+                + "\n--------------" + "\u001B[0m");
     }
 }

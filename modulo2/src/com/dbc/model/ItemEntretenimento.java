@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemEntretenimento implements Impressao {
+
     protected Integer id;
     protected String tipo;
     private String nome;
@@ -15,7 +16,7 @@ public class ItemEntretenimento implements Impressao {
     private String anoLancamento;
     private Integer classificacao;
     private String plataforma;
-    private List <Avaliacao> avaliacoes;
+    private Double MediaAvaliacoes;
     private String duracao;
     private Integer temporadas;
     private Integer episodios;
@@ -23,13 +24,11 @@ public class ItemEntretenimento implements Impressao {
 
     //Construtores
     public ItemEntretenimento() {
-        avaliacoes = new ArrayList<>();
     }
 
     public ItemEntretenimento(String nome, String genero) {
         this.nome = nome;
         this.genero = genero;
-        avaliacoes = new ArrayList<>();
     }
 
     public ItemEntretenimento(Integer id, String nome, String genero, String sinopse, String anoLancamento, Integer classificacao, String plataforma) {
@@ -40,7 +39,6 @@ public class ItemEntretenimento implements Impressao {
         this.anoLancamento = anoLancamento;
         this.classificacao = classificacao;
         this.plataforma = plataforma;
-        avaliacoes = new ArrayList<>();
     }
 
     //GETTERS AND SETTERS
@@ -109,16 +107,12 @@ public class ItemEntretenimento implements Impressao {
         this.plataforma = plataforma;
     }
 
-    public void setAvaliacoes(List<Avaliacao> avaliacoes) {
-        this.avaliacoes = avaliacoes;
+    public Double getMediaAvaliacoes() {
+        return MediaAvaliacoes;
     }
 
-    public void adicionarAvaliacao(Avaliacao avaliacao){
-        this.avaliacoes.add(avaliacao);
-    }
-
-    public List<Avaliacao> getAvaliacoes() {
-        return avaliacoes;
+    public void setMediaAvaliacoes(Double mediaAvaliacoes) {
+        MediaAvaliacoes = mediaAvaliacoes;
     }
 
     public String getDuracao() {
@@ -147,7 +141,7 @@ public class ItemEntretenimento implements Impressao {
 
     @Override
     public void imprimir() {
-        System.out.println("--------------------------------------"
+        System.out.println("\u001B[35m" + "--------------------------------------"
         + "\nId: "+getId()
         + "\nNome: "+getNome()
         + "\nGênero: "+getGenero()
@@ -155,7 +149,7 @@ public class ItemEntretenimento implements Impressao {
         + "\nClassificação Indicativa: " + getClassificacao()
         + "\nSinopse: "+getSinopse()
         + "\nOnde Assistir? "+getPlataforma()
-        + "\nAvaliação dos Usuários: "+ getAvaliacoes()
-        + "\n--------------------------------------");
+        + "\nAvaliação dos Usuários: "+ getMediaAvaliacoes()
+        + "\n--------------------------------------" + "\u001B[0m");
     }
 }

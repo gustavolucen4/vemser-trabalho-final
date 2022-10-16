@@ -1,9 +1,12 @@
 package com.dbc.view.metodosmain.interacao;
 
+import com.dbc.exceptions.OpcaoInvalidaException;
+import com.dbc.exceptions.UsuarioInvalidoException;
 import com.dbc.model.Cliente;
 import com.dbc.model.Usuario;
 import com.dbc.service.UsuarioService;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Login {
@@ -13,9 +16,11 @@ public class Login {
         Usuario usuarioEntrada = new Cliente();
         Usuario resultadoUser = null;
 
-        try{
-            while (true) {
-                System.out.println("Bem vindo!\nFazer login(1) ou se cadastrar(2)?");
+        System.out.println("**Bem vindo!**");
+        while (true) {
+            try {
+
+                System.out.println("Fazer login(1) ou se cadastrar(2)?");
                 int opcaoEntrada = scanner.nextInt();
                 scanner.nextLine();
 
@@ -33,18 +38,17 @@ public class Login {
                         resultadoUser = usuarioEncontrado;
                         break;
                     }else {
-                        System.out.println("\nUsuário não encontrado. Favor realizar Cadastro.");
+                        System.out.println("Usuário não encontrado. Favor realizar Cadastro.");
                     }
 
-                }
-                if (opcaoEntrada == 2) {
+                }else if (opcaoEntrada == 2) {
                     System.out.println("Preencha os seguintes dados para realizar o cadastro: ");
 
-                    System.out.println("\nNome: ");
+                    System.out.println("Nome: ");
                     String nome = scanner.nextLine();
                     usuarioEntrada.setNome(nome);
 
-                    System.out.println("\nIdade: ");
+                    System.out.println("Idade: ");
                     int idade = scanner.nextInt();
                     scanner.nextLine();
                     usuarioEntrada.setIdade(idade);
@@ -53,7 +57,7 @@ public class Login {
                     String email = scanner.nextLine();
                     usuarioEntrada.setEmail(email);
 
-                    System.out.println("\nSenha: ");
+                    System.out.println("Senha: ");
                     String senha = scanner.nextLine();
                     usuarioEntrada.setSenha(senha);
 
@@ -62,13 +66,23 @@ public class Login {
                     break;
 
                 } else {
-                    System.err.println("Opção informada não válida. Por favor, digite '1' para metodosmain.interacao.Login e '2' para Cadastro");
+                    throw new OpcaoInvalidaException("Opção informada inválida!");
                 }
+            }catch (InputMismatchException ex){
+                scanner.nextLine();
+                System.err.println("Por favor, digite um valor válido!!");
+            }catch (OpcaoInvalidaException ex){
+                System.err.println(ex.getMessage());
             }
-        }catch (Exception ex){
-            System.out.println(ex.getMessage());
+            catch (Exception ex){
+                System.out.println(ex.getMessage());
+            }
         }
 
-        return resultadoUser;
+        if (resultadoUser == null){
+            throw new UsuarioInvalidoException("Usuario inválido");
+        }else {
+            return resultadoUser;
+        }
     }
 }

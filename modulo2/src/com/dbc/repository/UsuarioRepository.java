@@ -283,8 +283,6 @@ public class UsuarioRepository implements Repositorio<Integer, Usuario> {
                 }
             }
 
-            System.out.println("Usuário consultado!!");
-
         } catch (SQLException e) {
             throw new BancoDeDadosException(e.getCause());
         } finally {

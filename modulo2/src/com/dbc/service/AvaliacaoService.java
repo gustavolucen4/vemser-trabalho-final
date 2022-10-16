@@ -52,7 +52,7 @@ public class AvaliacaoService {
     public void editarAvaliacao(Avaliacao avaliacao, Integer idUsuario, Integer idItem){
         try{
             boolean conseguiEditar = avaliacaoRepository.editar(avaliacao, idUsuario, idItem);
-            System.out.println("Avaliação editada!!");
+            System.out.println("Avaliação editada? "+conseguiEditar);
         }catch (BancoDeDadosException ex){
             System.out.println("ERRO: "+ex.getMessage());
         }
