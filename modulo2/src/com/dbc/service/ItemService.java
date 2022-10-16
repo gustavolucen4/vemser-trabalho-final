@@ -75,5 +75,14 @@ public class ItemService {
         }
     }
 
+    public ItemEntretenimento pegar(Integer id) {
+        try {
+            return itemRepository.pegar(id);
+        } catch (BancoDeDadosException ex) {
+            System.out.println("ERRO: "+ex.getMessage());
+        }
+
+        return null;
+    }
 
 }
