@@ -6,9 +6,9 @@ import com.dbc.service.AssistidosService;
 import com.dbc.service.AvaliacaoService;
 import com.dbc.service.ItemService;
 import com.dbc.service.UsuarioService;
+import com.dbc.view.metodosmain.Menus;
 import com.dbc.view.metodosmain.interacao.Login;
 
-import java.awt.*;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -39,11 +39,11 @@ public class Main {
 
             if (usuarioLogado.getTipoUsuario().getDescricao().equals(TipoUsuario.CLIENTE.getDescricao())) {
                 //Menu do Cliente
-                Menu.menuCliente(assistidosService, itemService, avaliacaoService, usuarioLogado, scanner);
+                Menus.menuCliente(assistidosService, itemService, avaliacaoService, usuarioLogado, scanner);
                 System.out.println("cliente");
             } else {
                 //Menu do Admin
-                //Menu.menuAdmin(usuarioManipulacao, itemManipulacao, avaliacaoManipulacao, usuarioLogado, scanner);
+                Menus.menuAdmin(usuarioService, itemService, avaliacaoService, usuarioLogado, scanner);
             }
         }
 

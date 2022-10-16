@@ -5,13 +5,17 @@ import com.dbc.model.Usuario;
 import com.dbc.service.AssistidosService;
 import com.dbc.service.AvaliacaoService;
 import com.dbc.service.ItemService;
+import com.dbc.service.UsuarioService;
+import com.dbc.view.metodosmain.interacao.Atualizar;
 import com.dbc.view.metodosmain.interacao.Buscar;
+import com.dbc.view.metodosmain.interacao.Criar;
+import com.dbc.view.metodosmain.interacao.Deletar;
 
 import java.util.Scanner;
 
-public class Menu {
+public class Menus {
 
-    public static void menuAdmin(UsuarioManipulacao usuarioManipulacao, ItemManipulacao itemManipulacao, AvaliacaoManipulacao avaliacaoManipulacao, Usuario usuario, Scanner scanner){
+    public static void menuAdmin(UsuarioService usuarioService, ItemService itemService, AvaliacaoService avaliacaoService, Usuario usuario, Scanner scanner){
 
         Filtro filtro = new Filtro();
         int listaSelecionada = 0;
@@ -27,14 +31,13 @@ public class Menu {
             System.out.println("[4] Pedir indicação de filme.");
             System.out.println("[9] Sair.");
 
-
             listaSelecionada = scanner.nextInt();
             //scanner.nextLine();
 
             switch (listaSelecionada){
                 case 1 -> {
                     System.out.println("Todos os filmes/series");
-                    itemManipulacao.listarItemEntretenimento();
+                    itemService.listarItens();
 
                     while (metodoSelecionado != 9){
 
@@ -54,11 +57,11 @@ public class Menu {
                                 scanner.nextLine();
                                 if (itemSelecionado == 1){
                                     //Criar filme
-                                    Criar.criarFilme(itemManipulacao, scanner);
+                                    Criar.criarFilme(itemService, scanner);
 
                                 }else if (itemSelecionado == 2) {
                                     //Criar Serie
-                                    Criar.criarSerie(itemManipulacao, scanner);
+                                    Criar.criarSerie(itemService, scanner);
                                 }
                             }
                             case 2 -> {
@@ -70,14 +73,14 @@ public class Menu {
                                     System.out.println("Digite o id/index que deseja atualizar");
                                     Integer index = scanner.nextInt();
                                     scanner.nextLine();
-                                    Atualizar.atualizarFilme(index ,itemManipulacao, scanner);
+                                    Atualizar.atualizarFilme(index , itemService, scanner);
 
                                 }else if (itemSelecionado == 2) {
                                     //Atualizar Serie
                                     System.out.println("Digite o id/index que deseja atualizar");
                                     Integer index = scanner.nextInt();
                                     scanner.nextLine();
-                                    Atualizar.atualizarSerie(index ,itemManipulacao, scanner);
+                                    Atualizar.atualizarSerie(index, itemService, scanner);
                                 }
                             }
                             case 3 -> {
@@ -86,7 +89,7 @@ public class Menu {
                                     System.out.println("Digite o id/index que deseja deletar");
                                     Integer index = scanner.nextInt();
                                     scanner.nextLine();
-                                    Deletar.deletarItemEntretenimento(index,itemManipulacao);
+                                    Deletar.deletarItemEntretenimento(index, itemService);
                             }
                             case 9 -> {
                                 System.out.println("<---");
@@ -98,7 +101,7 @@ public class Menu {
                     }
                 }
                 case 2 -> {
-                    avaliacaoManipulacao.listarAvaliacoes();
+                    avaliacaoService.listarAvaliacoes();
 
                     while (metodoSelecionado != 9){
 
@@ -107,34 +110,39 @@ public class Menu {
                         System.out.println("[3] Excluir uma avaliação.");
                         System.out.println("[9] Voltar.");
 
-
                         metodoSelecionado = scanner.nextInt();
-
 
                         switch (metodoSelecionado){
                             case 1 -> {
                                 System.out.println("Criar Avaliação");
                                     //Criar Avaliação
-                                    itemManipulacao.listarItemEntretenimento();
+                                    itemService.listarItens();
                                     System.out.println("Digite o index do filme que deseja avaliar:");
                                     Integer index = scanner.nextInt();
-                                    Criar.criarAvaliacao(itemManipulacao, avaliacaoManipulacao, usuario, index, scanner);
+                                    Criar.criarAvaliacao(avaliacaoService, usuario, index, scanner);
                             }
                             case 2 -> {
                                 System.out.println("Atualizar avaliação");
-                                    avaliacaoManipulacao.listarAvaliacoes();
+                                    avaliacaoService.listarAvaliacoes();
                                     //Atualizar avaliação
-                                    System.out.println("Digite o id/index que deseja atualizar");
-                                    Integer index = scanner.nextInt();
+                                    System.out.println("Digite os id/index pertencente a publicação: ");
+                                    System.out.println("Id do item: ");
+                                    Integer idItem = scanner.nextInt();
+                                    System.out.println("Id do usuário");
+                                    Integer idUsuario = scanner.nextInt();
                                     scanner.nextLine();
-                                    Atualizar.atualizarAvaliacao(itemManipulacao, avaliacaoManipulacao, usuario, index, scanner);
+
+                                    Atualizar.atualizarAvaliacao(avaliacaoService, idUsuario, idItem, scanner);
                             }
                             case 3 -> {
                                 System.out.println("Deletar avaliação !");
                                 //Deletar avaliação
-                                System.out.println("Digite o id/index que deseja deletar");
-                                Integer index = scanner.nextInt();
-                                Deletar.deletarAvaliacao(index, avaliacaoManipulacao);
+                                System.out.println("Digite os id/index pertencente a publicação: ");
+                                System.out.println("Id do item: ");
+                                Integer idItem = scanner.nextInt();
+                                System.out.println("Id do usuário");
+                                Integer idUsuario = scanner.nextInt();
+                                Deletar.deletarAvaliacao(idUsuario, idItem, avaliacaoService);
                             }
                             case 9 -> {
                                 System.out.println("<---");
@@ -148,7 +156,7 @@ public class Menu {
 
                 }
                 case 3 -> {
-                    usuarioManipulacao.listarUsuarios();
+                    usuarioService.listarUsuarios();
 
                     while (metodoSelecionado != 9){
 
@@ -163,27 +171,27 @@ public class Menu {
                             case 1 -> {
                                 System.out.println("Tornar usuário adiministrador");
                                 //Criar Avaliação
-                                usuarioManipulacao.listarUsuarios();
-                                System.out.println("Digite o email do cliente que deseja tornar administrador:");
-                                String email = scanner.next();
-                                Atualizar.tornarClienteAdmin(usuarioManipulacao, email, usuario);
+                                usuarioService.listarUsuarios();
+                                System.out.println("Digite o Id do cliente que deseja tornar administrador:");
+                                Integer idUsuario = scanner.nextInt();
+                                Atualizar.tornarClienteAdmin(usuarioService, idUsuario, usuario);
                             }
                             case 2 -> {
                                 System.out.println("Atualizar usuário");
-                                usuarioManipulacao.listarUsuarios();
+                                usuarioService.listarUsuarios();
                                 //Atualizar Usuario
-                                System.out.println("Digite email do usuário que deseja atualizar");
-                                String email = scanner.next();
+                                System.out.println("Digite o id do usuário que deseja atualizar");
+                                Integer idUsuario = scanner.nextInt();
                                 scanner.nextLine();
-                                Atualizar.atualizarQualquerUsuario(usuarioManipulacao, email, usuario, scanner);
+                                Atualizar.atualizarQualquerUsuario(usuarioService, idUsuario, usuario, scanner);
                             }
                             case 3 -> {
                                 System.out.println("Deletar usuário !");
                                 //Deletar Usuario
-                                usuarioManipulacao.listarUsuarios();
+                                usuarioService.listarUsuarios();
                                 System.out.println("Digite o id/index que deseja deletar");
                                 Integer index = scanner.nextInt();
-                                Deletar.deletarQualquerUsuario(index, usuarioManipulacao, usuario);
+                                Deletar.deletarQualquerUsuario(index, usuarioService, usuario);
                             }
                             case 9 -> {
                                 System.out.println("<---");
@@ -197,7 +205,7 @@ public class Menu {
                 }
                 case 4 -> {
                     scanner.nextLine();
-                    Buscar.buscarItens(itemManipulacao, filtro, scanner);
+                    Buscar.buscarItens(itemService, filtro, scanner);
                 }
                 case 9 -> {
                     System.out.println("Você saiu!");
@@ -232,7 +240,6 @@ public class Menu {
 
             switch (listaSelecionada) {
                 case 1 -> {
-                    itemService.filtrarItemEntretenimento(filtro);
                     Buscar.buscarItens(itemService, filtro, scanner);
                 }
                 case 2 -> {
@@ -245,23 +252,21 @@ public class Menu {
                     scanner.nextLine();
                     switch (metodoSelecionado) {
                         case 1 -> {
-                            assistidosManipulacao.listarAssistidos();
+                            assistidosService.listarAssistidos(usuarioLogado.getId());
                         }
                         case 2 -> {
-                            itemManipulacao.listarItemEntretenimento();
+                            itemService.listarItens();
                             System.out.println("Qual o ID do item que deseja marcar como assistido?");
                             Integer marcarAssistido = scanner.nextInt();
                             scanner.nextLine();
-                            assistidosManipulacao.marcarAssistido(marcarAssistido);
-                            assistidosManipulacao.listarAssistidos();
+                            assistidosService.marcarAssistido(usuarioLogado.getId(),marcarAssistido);
                         }
                         case 3 -> {
-                            assistidosManipulacao.listarAssistidos();
+                            assistidosService.listarAssistidos(usuarioLogado.getId());
                             System.out.println("Qual o ID do item assistido que deseja excluir?");
                             Integer excluirAssistido = scanner.nextInt();
                             scanner.nextLine();
-                            assistidosManipulacao.deletarAssistido(excluirAssistido);
-
+                            assistidosService.deletarAssistidos(excluirAssistido, usuarioLogado.getId());
                         }
                         case 9 -> {
                             System.out.println("<---");
@@ -279,28 +284,24 @@ public class Menu {
                     scanner.nextLine();
                     switch (opcaoMenuClienteAvaliacoes) {
                         case 1 -> {
-                            avaliacaoManipulacao.listarAvaliacoes();
+                            avaliacaoService.listarAvaliacoes();
                         }
                         case 2 -> {
-                            avaliacaoManipulacao.listarAvaliacoes();
-
                             System.out.println("Criar Avaliação");
                             //Criar Avaliação
-                            itemManipulacao.listarItemEntretenimento();
+                            itemService.listarItens();
                             System.out.println("Digite o index do filme que deseja avaliar:");
                             Integer index = scanner.nextInt();
-                            Criar.criarAvaliacao(itemManipulacao, avaliacaoManipulacao, usuarioLogado, index, scanner);
+                            Criar.criarAvaliacao(avaliacaoService, usuarioLogado, index, scanner);
                         }
                         case 3 -> {
-                            avaliacaoManipulacao.listarAvaliacoes();
-
+                            avaliacaoService.listarAvaliacoesUsuario(usuarioLogado.getId());
                             System.out.println("Atualizar avaliação");
-                            avaliacaoManipulacao.listarAvaliacoes();
                             //Atualizar avaliação
                             System.out.println("Digite o id/index que deseja atualizar");
                             Integer index = scanner.nextInt();
                             scanner.nextLine();
-                            Atualizar.atualizarAvaliacao(itemManipulacao, avaliacaoManipulacao, usuarioLogado, index, scanner);
+                            Atualizar.atualizarAvaliacao(avaliacaoService, usuarioLogado.getId(), index, scanner);
                         }
                         case 4 -> {
 
@@ -308,7 +309,7 @@ public class Menu {
                             //Deletar avaliação
                             System.out.println("Digite o id/index que deseja deletar");
                             Integer index = scanner.nextInt();
-                            Deletar.deletarAvaliacao(index, avaliacaoManipulacao);
+                            Deletar.deletarAvaliacao(index, usuarioLogado.getId(), avaliacaoService);
                         }
                         case 9 -> {
                             System.out.println("<---");

@@ -1,7 +1,6 @@
 package com.dbc.service;
 
 import com.dbc.exceptions.BancoDeDadosException;
-import com.dbc.model.Avaliacao;
 import com.dbc.model.Filtro;
 import com.dbc.model.ItemEntretenimento;
 import com.dbc.repository.ItemRepository;

@@ -1,10 +1,8 @@
 package com.dbc.view.metodosmain.interacao;
 
 import com.dbc.model.Filtro;
-import com.dbc.model.ItemEntretenimento;
 import com.dbc.service.ItemService;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class Buscar {

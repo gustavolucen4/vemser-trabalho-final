@@ -1,9 +1,9 @@
 package com.dbc.repository;
 
-import com.dbc.enums.TipoUsuario;
 import com.dbc.exceptions.BancoDeDadosException;
 import com.dbc.interfaces.Repositorio;
-import com.dbc.model.*;
+import com.dbc.model.Filtro;
+import com.dbc.model.ItemEntretenimento;
 
 import java.sql.*;
 import java.util.ArrayList;

@@ -133,6 +133,40 @@ public class UsuarioRepository implements Repositorio<Integer, Usuario> {
         }
     }
 
+    public boolean tornarUsuarioAdmin(Integer id) throws BancoDeDadosException {
+        Connection conn = null;
+        try {
+            conn = ConexaoBancoDeDados.getConnection();
+
+            StringBuilder sql = new StringBuilder();
+
+            sql.append("UPDATE USUARIO SET tipo_usuario = ? ");
+            sql.append(" WHERE id_usuario = ? ");
+
+            PreparedStatement stmt = conn.prepareStatement(sql.toString());
+
+            stmt.setString(1, "administrador");
+            stmt.setInt(2, id);
+
+            int res = stmt.executeUpdate();
+
+            System.out.println("Editar Usuário: " + res);
+
+            return res > 0;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     @Override
     public List<Usuario> listar() throws BancoDeDadosException {
         List<Usuario> usuarioList = new ArrayList<>();

@@ -78,6 +78,12 @@ public  class Usuario implements Impressao {
         this.tipoUsuario = tipoUsuario;
     }
 
+    public void setUsuarioAdmin(Usuario cliente){
+        if(this.tipoUsuario.equals(TipoUsuario.ADMINISTRADOR)){
+            cliente.tipoUsuario = TipoUsuario.ADMINISTRADOR;
+        }
+    }
+
     @Override
     public void imprimir() {
         System.out.println("--------------"

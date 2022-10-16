@@ -4,7 +4,6 @@ import com.dbc.model.Cliente;
 import com.dbc.model.Usuario;
 import com.dbc.service.UsuarioService;
 
-import java.util.Optional;
 import java.util.Scanner;
 
 public class Login {
