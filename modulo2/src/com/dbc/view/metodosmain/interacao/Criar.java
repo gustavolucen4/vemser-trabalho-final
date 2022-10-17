@@ -33,13 +33,15 @@ public class Criar {
     public static void criarSerie(ItemService itemService, Scanner scanner){
 
         Serie serie = new Serie();
-        System.out.println("Nome do série: ");
+        System.out.println("Nome da série: ");
         serie.setNome(scanner.nextLine());
         System.out.println("Genero do série:");
         serie.setGenero(scanner.nextLine());
         System.out.println("Sinopse:");
         serie.setSinopse(scanner.nextLine());
         System.out.println("Ano de lançamento:");
+        serie.setAnoLancamento(scanner.nextLine());
+        System.out.println("Classificação");
         serie.setClassificacao(scanner.nextInt());
         scanner.nextLine();
         System.out.println("Plataforma de streaming:");

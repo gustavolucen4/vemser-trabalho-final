@@ -52,7 +52,7 @@ public class ItemRepository implements Repositorio<Integer, ItemEntretenimento> 
             stmt.setString(8, item.getPlataforma());
 
             int res = stmt.executeUpdate();
-            System.out.println("adicionarItem.res=" + res);
+
             return item;
         } catch (SQLException e) {
             throw new BancoDeDadosException(e.getCause());
