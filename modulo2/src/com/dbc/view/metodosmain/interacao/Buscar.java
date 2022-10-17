@@ -10,8 +10,13 @@ public class Buscar {
         while (true) {
             System.out.println("O que você deseja assistir hoje? \nFilme ou Série.");
             filtro.setTipo(scanner.nextLine());
-            System.out.println("Escolha um gênero: \nAcao, Romance, Fantasia, Animacao, Ficcao");
-            filtro.setGenero(scanner.nextLine());
+            if (filtro.getTipo().equalsIgnoreCase("Filme")) {
+                System.out.println("Escolha um gênero do Filme: \nAcao, Romance, Fantasia, Animacao, Ficcao");
+                filtro.setGenero(scanner.nextLine());
+            }else {
+                System.out.println("Escolha um gênero da Série: \nDrama, Comedia, Terror");
+                filtro.setGenero(scanner.nextLine());
+            }
             System.out.println("Qual a Classificação Indicativa desejada? (10,12,14,16 ou 18)");
             filtro.setClassificacao(scanner.nextInt());
             scanner.nextLine();

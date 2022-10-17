@@ -96,6 +96,18 @@ VALUES (SEQ_ITEM_ENTRETENIMENTO.nextval, 'Game of Thrones', 'serie', 'Drama', 'U
 INSERT INTO ITEM_ENTRETENIMENTO(id_item_entretenimento , nome, tipo, genero, sinopse, ano_lancamento, classificacao, plataforma, duracao, temporadas, episodios)
 VALUES (SEQ_ITEM_ENTRETENIMENTO.nextval, 'The Office', 'serie', 'Comedia', 'Mostra a rotina de um escritorio', '2005', 14, 'HBO MAX', NULL , 9, 120);
 
+INSERT INTO ITEM_ENTRETENIMENTO(id_item_entretenimento , nome, tipo, genero, sinopse, ano_lancamento, classificacao, plataforma, duracao, temporadas, episodios)
+VALUES (SEQ_ITEM_ENTRETENIMENTO.nextval, 'Breaking Bad', 'serie', 'Drama', 'Um professor de quimica, que descobriu que tem um cancêr. E está fazendo de tudo para deixar dinheiro pra sua família', '2008', 16, 'HBO MAX', NULL , 5, 62);
+
+INSERT INTO ITEM_ENTRETENIMENTO(id_item_entretenimento , nome, tipo, genero, sinopse, ano_lancamento, classificacao, plataforma, duracao, temporadas, episodios)
+VALUES (SEQ_ITEM_ENTRETENIMENTO.nextval, 'O Exorcista', 'serie', 'Terror', 'Dois homens muito diferentes dirigem seus esforços a um caso terrível de possessão demoníaca numa família local', '2019', 18, 'Netflix', NULL , 2, 12);
+
+INSERT INTO ITEM_ENTRETENIMENTO(id_item_entretenimento , nome, tipo, genero, sinopse, ano_lancamento, classificacao, plataforma, duracao, temporadas, episodios)
+VALUES (SEQ_ITEM_ENTRETENIMENTO.nextval, 'Supernatural', 'serie', 'Terror', 'Os irmãos Sam e Dean Winchester encaram cenários sinistros caçando monstros', '2005', 18, 'Netflix', NULL , 15, 200);
+
+INSERT INTO ITEM_ENTRETENIMENTO(id_item_entretenimento , nome, tipo, genero, sinopse, ano_lancamento, classificacao, plataforma, duracao, temporadas, episodios)
+VALUES (SEQ_ITEM_ENTRETENIMENTO.nextval, 'A Maldição da Mansão Bly', 'serie', 'Terror', 'Uma babá norte-americana chega a Bly Manor e começa a ver aparições em uma propriedade inglesa', '2020', 18, 'Netflix', NULL , 1, 6);
+-- admins
 -- admins
 
 INSERT INTO USUARIO(id_usuario, nome, idade, email, senha, tipo_usuario)
