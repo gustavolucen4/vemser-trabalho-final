@@ -37,8 +37,8 @@ public class ItemRepository implements Repositorio<Integer, ItemEntretenimento> 
             item.setId(proximoId);
 
             String sql = "INSERT INTO ITEM_ENTRETENIMENTO\n" +
-                    "(id_item_entretenimento , nome, tipo, genero, sinopse, ano_lancamento, classificacao, plataforma)\n" +
-                    "VALUES(?, ?, ?, ?, ?, ?, ?, ?)\n";
+                    "(id_item_entretenimento , nome, tipo, genero, sinopse, ano_lancamento, classificacao, plataforma, duracao, temporadas, episodios)\n" +
+                    "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)\n";
 
             PreparedStatement stmt = con.prepareStatement(sql);
 
@@ -50,10 +50,14 @@ public class ItemRepository implements Repositorio<Integer, ItemEntretenimento> 
             stmt.setString(6, item.getAnoLancamento());
             stmt.setInt(7, item.getClassificacao());
             stmt.setString(8, item.getPlataforma());
+            stmt.setString(9, item.getDuracao());
+            stmt.setInt(10, item.getTemporadas());
+            stmt.setInt(11, item.getEpisodios());
 
             int res = stmt.executeUpdate();
 
             return item;
+
         } catch (SQLException e) {
             throw new BancoDeDadosException(e.getCause());
         } finally {
@@ -154,7 +158,6 @@ public class ItemRepository implements Repositorio<Integer, ItemEntretenimento> 
 
             // Executa-se a consulta
             int res = stmt.executeUpdate();
-            System.out.println("editarFilme.res=" + res);
 
             return res > 0;
         } catch (SQLException e) {
@@ -192,11 +195,6 @@ public class ItemRepository implements Repositorio<Integer, ItemEntretenimento> 
                 item.setAnoLancamento(res.getString("ano_lancamento"));
                 item.setClassificacao(res.getInt("classificacao"));
                 item.setPlataforma(res.getString("plataforma"));
-                if (mediaAvaliacoes(item.getId()) == 0){
-                    item.setMediaAvaliacoes(null);
-                }else {
-                    item.setMediaAvaliacoes(mediaAvaliacoes(item.getId()));
-                }
 
                 itemEntretenimentos.add(item);
             }
@@ -245,11 +243,6 @@ public class ItemRepository implements Repositorio<Integer, ItemEntretenimento> 
                 item.setAnoLancamento(res.getString("ano_lancamento"));
                 item.setClassificacao(res.getInt("classificacao"));
                 item.setPlataforma(res.getString("plataforma"));
-                if (mediaAvaliacoes(item.getId()) == 0){
-                    item.setMediaAvaliacoes(null);
-                }else {
-                    item.setMediaAvaliacoes(mediaAvaliacoes(item.getId()));
-                }
 
                 itemEntretenimentos.add(item);
             }
@@ -268,7 +261,7 @@ public class ItemRepository implements Repositorio<Integer, ItemEntretenimento> 
         return itemEntretenimentos;
     }
 
-    public Double mediaAvaliacoes(Integer id) throws BancoDeDadosException{
+    public Double calcularAvaliacoes(Integer id) throws BancoDeDadosException{
         Double media = null;
         Connection con = null;
 
@@ -324,11 +317,7 @@ public class ItemRepository implements Repositorio<Integer, ItemEntretenimento> 
                 item.setAnoLancamento(res.getString("ano_lancamento"));
                 item.setClassificacao(res.getInt("classificacao"));
                 item.setPlataforma(res.getString("plataforma"));
-                if (mediaAvaliacoes(item.getId()) == 0){
-                    item.setMediaAvaliacoes(null);
-                }else {
-                    item.setMediaAvaliacoes(mediaAvaliacoes(item.getId()));
-                }
+
             }
 
             System.out.println("Item Pego!");

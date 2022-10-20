@@ -3,9 +3,6 @@ package com.dbc.model;
 
 import com.dbc.interfaces.Impressao;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ItemEntretenimento implements Impressao {
 
     protected Integer id;

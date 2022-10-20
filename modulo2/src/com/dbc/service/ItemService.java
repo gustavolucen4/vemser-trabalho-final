@@ -1,6 +1,7 @@
 package com.dbc.service;
 
 import com.dbc.exceptions.BancoDeDadosException;
+import com.dbc.exceptions.OpcaoInvalidaException;
 import com.dbc.model.Filtro;
 import com.dbc.model.ItemEntretenimento;
 import com.dbc.repository.ItemRepository;
@@ -17,6 +18,9 @@ public class ItemService {
 
     public void adicionarItemEntretenimento(ItemEntretenimento itemEntretenimento){
         try{
+            if (itemEntretenimento.getNome() == null || itemEntretenimento.getTipo() == null || itemEntretenimento.getClassificacao() == null){
+                throw new OpcaoInvalidaException("Dados invalidos.");
+            }
             ItemEntretenimento itemAdicionado = itemRepository.adicionar(itemEntretenimento);
             System.out.println("Item adicionado com sucesso!");
 
@@ -30,7 +34,14 @@ public class ItemService {
     public void listarItens(){
         try{
             List<ItemEntretenimento> itens = itemRepository.listar();
-            itens.forEach(x -> x.imprimir());
+            itens.forEach(item -> {
+                if (calcularAvaliacao(item.getId()) == 0){
+                    item.setMediaAvaliacoes(null);
+                }else {
+                    item.setMediaAvaliacoes(calcularAvaliacao(item.getId()));
+                }
+            });
+            itens.forEach(ItemEntretenimento::imprimir);
 
         }catch (BancoDeDadosException ex){
             System.out.println("ERRO: "+ex.getMessage());
@@ -58,7 +69,16 @@ public class ItemService {
         try{
             if (filtro != null) {
                 List<ItemEntretenimento> resultado = itemRepository.filtrarItens(filtro);
-                resultado.forEach(x -> x.imprimir());
+
+                resultado.forEach(item -> {
+                    if (calcularAvaliacao(item.getId()) == 0){
+                        item.setMediaAvaliacoes(null);
+                    }else {
+                        item.setMediaAvaliacoes(calcularAvaliacao(item.getId()));
+                    }
+                });
+
+                resultado.forEach(ItemEntretenimento::imprimir);
                 return true;
             }
         } catch (BancoDeDadosException ex) {
@@ -67,21 +87,28 @@ public class ItemService {
         return false;
     }
 
-    public void mediaAvaliacao(Integer id){
+    public Double calcularAvaliacao(Integer id){
         try{
-            Double media = itemRepository.mediaAvaliacoes(id);
+            return itemRepository.calcularAvaliacoes(id);
         } catch (BancoDeDadosException ex) {
             System.out.println("ERRO: "+ex.getMessage());
         }
+        return null;
     }
 
-    public ItemEntretenimento pegar(Integer id) {
+    public ItemEntretenimento pegarItem(Integer id) {
         try {
-            return itemRepository.pegar(id);
+            ItemEntretenimento item = itemRepository.pegar(id);
+            if (calcularAvaliacao(item.getId()) == 0){
+                item.setMediaAvaliacoes(null);
+            }else {
+                item.setMediaAvaliacoes(calcularAvaliacao(item.getId()));
+            }
+
+            return item;
         } catch (BancoDeDadosException ex) {
             System.out.println("ERRO: "+ex.getMessage());
         }
-
         return null;
     }
 
